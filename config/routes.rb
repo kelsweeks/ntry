@@ -5,7 +5,9 @@ Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   get '/hello', to: 'application#hello_world'
   get '/files', to: 'files#show'
-  get 'maps', to: 'maps#from_api'
+  get '/login', to: 'sessions#create'
+  post '/clients', to: 'clients#create'
+  # get 'maps', to: 'maps#from_api'
   # Defines the root path route ("/")
   # root "articles#index"
 end

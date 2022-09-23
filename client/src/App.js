@@ -8,6 +8,7 @@ import Home from './components/Home';
 import SignUp from './components/SignUp';
 import Dashboard from './components/Dashboard';
 import LoggedOut from "./components/LoggedOut";
+import Clients from './components/Clients';
 // import TestForm from './TestForm';
 
 
@@ -45,6 +46,7 @@ function App() {
       <Route path="signup" element={<SignUp/>}/>
       <Route path="dashboard" element={<Dashboard/>}/>
       <Route path="logout" element={<LoggedOut/>}/>
+      <Route path="clients" element={<Clients/>}/>
     </Routes>
   );
 }
