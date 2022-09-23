@@ -8,9 +8,9 @@ class ApplicationController < ActionController::API
         render json: { count: session[:count] }
     end
 
-    # def current_user 
-    #     @current_user||=User.find_by(id: session[:user_id])
-    # end
+    def current_user 
+        @current_user||=CaseManager.find_by(id: session[:case_manager_id])
+    end
 
     private
     def render_not_found_response(not_found)
