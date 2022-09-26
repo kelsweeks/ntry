@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom'
 import ClientCard from './ClientCard'
 import ClientForm from './ClientForm'
 import Button from '@mui/material/Button'
+import { Grid } from '@material-ui/core'
 
 
 function Clients() {
@@ -28,25 +29,29 @@ function Clients() {
         setClients(clients => [NewClient, ...clients])
     }
 
-    const updateClient = (updatedClient) => setClients(clientobj => {
-        return clientobj.map(client => {
-            if(client.id === updatedClient.id){
-                return updatedClient
-            }else {
-                return client
-            }
-        })
-    })
+    // const updateClient = (updatedClient) => setClients(clientobj => {
+    //     return clientobj.map(client => {
+    //         if(client.id === updatedClient.id){
+    //             return updatedClient
+    //         }else {
+    //             return client
+    //         }
+    //     })
+    // })
 
     return (
         <div>
             <Button component={Link} to="/" variant="contained" style={buttonstyle}>
                 Home
             </Button>
-            <ClientForm newClient={newClient}/>
-            {clients.map(client => <ClientCard key={client.id} client={client} deleteClient={deleteClient} updateClient={updateClient}/>)}
+            {/* <ClientForm newClient={newClient}/> */}
+            <Grid container spacing={2}>
+                {clients.map(client => <ClientCard key={client.id} client={client} deleteClient={deleteClient} />)}
+            </Grid>
         </div>
     )
 }
 
 export default Clients
+
+// updateClient={updateClient}

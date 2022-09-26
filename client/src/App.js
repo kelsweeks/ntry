@@ -9,6 +9,7 @@ import SignUp from './components/SignUp';
 import Dashboard from './components/Dashboard';
 import LoggedOut from "./components/LoggedOut";
 import Clients from './components/Clients';
+import ClientForm from "./components/ClientForm";
 // import TestForm from './TestForm';
 
 
@@ -47,6 +48,7 @@ function App() {
       <Route path="dashboard" element={<Dashboard/>}/>
       <Route path="logout" element={<LoggedOut/>}/>
       <Route path="clients" element={<Clients/>}/>
+      <Route path="update" element={<ClientForm/>}/>
     </Routes>
   );
 }

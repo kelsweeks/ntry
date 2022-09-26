@@ -20,7 +20,7 @@ class ClientsController < ApplicationController
         end
     end
 
-    def updated
+    def update
         client = Client.find(params[:id])
         client.update!(client_params)
         render json: client, status: :accepted
