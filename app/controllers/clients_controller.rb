@@ -1,9 +1,9 @@
 class ClientsController < ApplicationController
-    rescue_from ActiveRecord::RecordInvalid, with: :invalid_record
-
+    # rescue_from ActiveRecord::RecordInvalid, with: :invalid_record
+    before_action :is_authorized, only: [:create, :update, :destroy]
+    
     def index
-        clients = Client.all
-        render json: clients, status: :ok
+        render json: Client.all, status: :ok
     end
 
     def show
@@ -13,11 +13,7 @@ class ClientsController < ApplicationController
 
     def create
         client = Client.create!(client_params)
-        if client
-            render json: client, status: :created
-        else
-            render json: client.errors.full_messages, status: :unprocessable_entity
-        end
+        render json: client, status: :created
     end
 
     def update
@@ -41,7 +37,7 @@ class ClientsController < ApplicationController
         params.permit(:name, :age, :date_of_birth, :address, :phone, :email, :medical_history)
     end
 
-    def render_unprocessable_entity_response(invalid)
-        render json: { errors: invalid.record.errors.full_messages }, status: :unprocessable_entity
-    end
+    # def render_unprocessable_entity_response(invalid)
+    #     render json: { errors: invalid.record.errors.full_messages }, status: :unprocessable_entity
+    # end
 end

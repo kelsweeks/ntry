@@ -59,9 +59,9 @@ function ClientForm({client, deleteClient, updateClient}){
         })
     }
 
-    const clientData = (e) => {
-        console.log(e.target)
-    }
+    // const clientData = (e) => {
+    //     console.log(e.target)
+    // }
     return (
         <div>
             <Button component={Link} to="/" variant="contained" style={homebuttonstyle}>

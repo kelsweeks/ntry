@@ -24,7 +24,7 @@ function ClientCard({client, deleteClient, updateClient,}){
 
     const avatarStyle={backgroundColor: '#05b7f1'}
     const paperstyle={padding :20, height:'50vh', width:300, margin:"20px auto", backgroundColor: '#EDEDED'}
-    const buttonstyle={padding :5, backgroundColor: '#05b7f1', margin: "10px"}
+    const buttonstyle={padding :5, backgroundColor: '#05b7f1', margin: "10px", justify: 'center'}
 
     const navigate = useNavigate()
 
@@ -97,11 +97,11 @@ function ClientCard({client, deleteClient, updateClient,}){
             <h5>Email: {client.email}</h5>
             <h5> Brief Medical History:</h5>
             <a>{client.medical_history}</a>
-        <ButtonGroup>
+        <ButtonGroup container='true'>
             <Button variant="contained" style={buttonstyle} startIcon={<DeleteIcon />} onClick={handleDelete} fullWidth>
                 Delete
             </Button>
-            <Button component={Link} to="/update" variant="contained" style={buttonstyle} fullWidth startIcon={<AutorenewIcon />} updateClient={updateClient}>
+            <Button component={Link} to="/update" variant="contained" style={buttonstyle} fullWidth startIcon={<AutorenewIcon />} >
                 Update
             </Button>
             {/* <Button variant="contained" style={buttonstyle} fullWidth startIcon={<AutorenewIcon />} onClick={handleClientUpdate}>Update</Button> */}
@@ -112,3 +112,5 @@ function ClientCard({client, deleteClient, updateClient,}){
 }
 
 export default ClientCard
+
+// updateClient={updateClient}
