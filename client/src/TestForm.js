@@ -1,5 +1,6 @@
 import React from 'react';
 import { useState, useEffect} from 'react';
+import { Paper, Grid, TextField } from '@material-ui/core'
 
 function TestForm() {
     const [name, setName] = useState('')
@@ -7,6 +8,7 @@ function TestForm() {
     const [upload, setUpload] = useState(null)
     const [files, setFiles] = useState([])
     const [case_managers, setCaseManagers] = useState([])
+    const paperstyle={padding :20, height:'30vh', width:500, margin:"20px auto"}
     
     useEffect(() => {
         fetch('/case_managers')
@@ -37,8 +39,26 @@ function TestForm() {
 
     return (
         <>
-            <h1> TEST FORM </h1>
-            <form onSubmit={handleUploadSubmit}>
+        <Grid>
+            <Paper elevation={10} style={paperstyle} onSubmit={handleUploadSubmit}>
+                <h1 align='center'> Upload a File for Client </h1>
+            <Grid container direction={"column"} spacing={2}>
+                <Grid item align='center'>
+                    <TextField variant='outlined' label="name" type="text" value={name} onChange={(e) => setName(e.target.value)}/>
+                </Grid>
+                <Grid item align='center'>
+                    <TextField variant='outlined' label="note" type="text" value={note} onChange={(e) => setNote(e.target.value)}/>
+                </Grid>
+                <Grid item align='center'>
+                    <input variant='outlined' type="file"  accepts=".xlsx,.xls,image/*,.doc, .docx,.ppt, .pptx,.txt,.pdf" onChange={(e) => setUpload(e.target.files[0])}/>
+                </Grid>
+                <Grid item align='center'>
+                    <input type='submit'/>
+                </Grid>
+            </Grid>
+            </Paper>
+        </Grid>
+            {/* <form onSubmit={handleUploadSubmit}>
                 <h2>name</h2>
                 <input type="text" value={name} onChange={(e) => setName(e.target.value)}/>
                 <h2>note</h2>
@@ -46,7 +66,7 @@ function TestForm() {
                 <h2>upload file</h2>
                 <input type="file" accepts=".xlsx,.xls,image/*,.doc, .docx,.ppt, .pptx,.txt,.pdf" onChange={(e) => setUpload(e.target.files[0])}/>
                 <input type='submit'/>
-            </form>
+            </form> */}
         </>
     )
 }

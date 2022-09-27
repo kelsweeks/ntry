@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :clients, only: [ :index, :show, :create, :update, :destroy ]
   resources :case_managers, only: [ :show ]
-  resources :appointments
+  resources :appointments, only: [ :index, :show, :create, :update, :destroy ]
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   get '/hello', to: 'application#hello_world'
@@ -11,6 +11,8 @@ Rails.application.routes.draw do
 
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
+
+  # get '/clients', to: 'clients#show'
 
   # get '/authorized_user', to: 'case_managers#show'
 

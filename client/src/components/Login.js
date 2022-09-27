@@ -38,7 +38,7 @@ const Login=({updateCaseManager}) => {
             if(res.ok){
                 res.json().then(caseManager => {
                     updateCaseManager(caseManager)
-                    navigate.push(`/case_managers/${caseManager.id}`)
+                    navigate(`/case_managers/${caseManager.id}`)
                 })
             }else {
                 res.json().then(json => setErrors(json.errors))

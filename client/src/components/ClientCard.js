@@ -8,7 +8,7 @@ import Button from '@mui/material/Button'
 import ButtonGroup from '@mui/material/ButtonGroup'
 import DeleteIcon from '@mui/icons-material/Delete'
 import AutorenewIcon from '@mui/icons-material/Autorenew'
-import ClientForm from './ClientForm'
+import UpdateClientForm from './ClientForm'
 
 function ClientCard({client, deleteClient, updateClient,}){
     const [errors, setErrors] = useState('')

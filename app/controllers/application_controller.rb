@@ -26,8 +26,7 @@ class ApplicationController < ActionController::API
     end
 
     def authenticate_case_manager
-        render json: { errors:  "Not Authorized"}, status: :unauthorized 
-        unless current_case_manager
+        render json: { errors:  "Not Authorized"}, status: :unauthorized unless current_case_manager
     end
     
     def is_authorized?

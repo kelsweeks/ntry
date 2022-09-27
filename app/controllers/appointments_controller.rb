@@ -3,8 +3,7 @@ class AppointmentsController < ApplicationController
     rescue_from ActiveRecord::RecordNotFound, with: :not_found
 
     def index
-        appointments = Appointment.all
-        render json: appointments, status: :ok
+        render json: Appointment.all, status: :ok
     end
 
     def show

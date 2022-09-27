@@ -4,6 +4,7 @@ import Home from './Home'
 import {Link} from 'react-router-dom'
 import { useState } from 'react'
 import Button from '@mui/material/Button'
+import TestForm from '../TestForm'
 import AutorenewIcon from '@mui/icons-material/Autorenew'
 
 function ClientForm({client, deleteClient, updateClient}){
@@ -64,9 +65,9 @@ function ClientForm({client, deleteClient, updateClient}){
     // }
     return (
         <div>
-            <Button component={Link} to="/" variant="contained" style={homebuttonstyle}>
+            {/* <Button component={Link} to="/" variant="contained" style={homebuttonstyle}>
                 Home
-            </Button>
+            </Button> */}
             <Grid>
                 <Paper elevation={10} style={paperstyle}>
                     <h2 align='center'>Update Client</h2>
@@ -102,6 +103,9 @@ function ClientForm({client, deleteClient, updateClient}){
                 </Grid>
                 <Grid item >
                     <Button variant="contained" style={buttonstyle} startIcon={<AutorenewIcon />} onClick={handleClientUpdate} fullWidth>Update</Button>
+                </Grid>
+                <Grid>
+                    <TestForm/>
                 </Grid>
                 </Paper>
             </Grid>

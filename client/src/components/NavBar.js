@@ -13,6 +13,7 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import WavesIcon from '@mui/icons-material/Waves';
+import Home from './Home'
 // import { useState } from 'react';
 import { useNavigate} from 'react-router-dom';
 
@@ -31,7 +32,7 @@ function ResponsiveAppBar({ currentCaseManager, updateCaseManager}) {
             method: "DELETE"
         })
         updateCaseManager("")
-        navigate.push('/login')
+        navigate('/login')
     }
 
     const handleOpenNavMenu = (event) => {
@@ -58,7 +59,7 @@ function ResponsiveAppBar({ currentCaseManager, updateCaseManager}) {
                 variant="h6"
                 noWrap
                 component="a"
-                href="/"
+                element={<Home/>}
                 sx={{
                 mr: 2,
                 display: { xs: 'none', md: 'flex' },
