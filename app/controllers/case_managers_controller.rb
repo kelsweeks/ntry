@@ -1,10 +1,10 @@
 class CaseManagersController < ApplicationController
     rescue_from ActiveRecord::RecordInvalid, with: :invalid_record  
     skip_before_action :authenticate_case_manager, except: :show
-    # def index
-    #     case_managers = CaseManager.all
-    #     render json: case_managers, status: :ok
-    # end
+    def index
+        case_managers = CaseManager.all
+        render json: case_managers, status: :ok
+    end
 
     def show
         case_manager = CaseManager.find(params[:id])

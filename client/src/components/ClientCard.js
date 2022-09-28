@@ -8,11 +8,11 @@ import Button from '@mui/material/Button'
 import ButtonGroup from '@mui/material/ButtonGroup'
 import DeleteIcon from '@mui/icons-material/Delete'
 import AutorenewIcon from '@mui/icons-material/Autorenew'
-import UpdateClientForm from './ClientForm'
+// import UpdateClientForm from './ClientForm'
 
-function ClientCard({client, deleteClient, updateClient,}){
+function ClientCard({caseManager, client, deleteClient, updateClient,}){
     const [errors, setErrors] = useState('')
-    const [showButton, setShowButton] = useState(false)
+    // const [showButton, setShowButton] = useState(false)
     const [name, setName] = useState('')
     const [age, setAge] = useState('')
     const [date_of_birth, setDateOfBirth] = useState('')
@@ -27,6 +27,10 @@ function ClientCard({client, deleteClient, updateClient,}){
     const buttonstyle={padding :5, backgroundColor: '#05b7f1', margin: "10px", justify: 'center'}
 
     const navigate = useNavigate()
+    
+    // const toggleButton = () => {
+    //     setShowButton(!showButton)
+    // }
 
     // const updateClient = (updatedClient) => setClients(clientobj => {
     //     return clientobj.map(client => {
@@ -39,48 +43,51 @@ function ClientCard({client, deleteClient, updateClient,}){
     // })
 
     function handleDelete(){
-        fetch('/clients/${client.id}',{
-            method: 'DELETE'
+        fetch(`/clients/${client.id}`,{
+            method: 'DELETE',
+            headers: {'Content-Type': 'application/json'}
         })
         .then(res => {
             if(res.ok){
                 deleteClient(client.id)
+                navigate(`/case_managers/${caseManager.id}`)
             }else {
                 res.json().then(data => setErrors(data.errors))
+                // res.json().then(data => setErrors(Object.entries(data.errors).map(e => `${e[0]} ${e[1]}`)))
             }
         })
     }
 
-    // const handleClientUpdate = (e) => {
-    //     e.preventDefault()
+    const handleClientUpdate = (e) => {
+        e.preventDefault()
 
-    //     const clientInfo = {
-    //         name: name,
-    //         age: age,
-    //         date_of_birth: date_of_birth,
-    //         address: address,
-    //         phone: phone,
-    //         email: email,
-    //         medical_history: medical_history
-    //     }
-    //     fetch(`/clients/${client.id}`, {
-    //         method: 'PATCH',
-    //         headers: { 'Content-Type': 'application/json' },
-    //         body:JSON.stringify(clientInfo)
-    //     })
-    //     .then(res => {
-    //         if(res.ok){
-    //             res.json().then(updateClient)
-    //             e.target.reset()
-    //         }else {
-    //             res.json().then(data => setUpdateErrors((data.errors)))
-    //         }
-    //     })
-    // }
+        const clientInfo = {
+            name: name,
+            age: age,
+            date_of_birth: date_of_birth,
+            address: address,
+            phone: phone,
+            email: email,
+            medical_history: medical_history
+        }
+        fetch(`/clients/${client.id}`, {
+            method: 'PATCH',
+            headers: { 'Content-Type': 'application/json' },
+            body:JSON.stringify(clientInfo)
+        })
+        .then(res => {
+            if(res.ok){
+                res.json().then(updateClient)
+                e.target.reset()
+            }else {
+                res.json().then(data => setUpdateErrors((data.errors)))
+            }
+        })
+    }
 
-    // const clientData = (e) => {
-    //     console.log(e.target)
-    // }
+    const clientData = (e) => {
+        console.log(e.target)
+    }
 
     // Add Link to the update form to update button 
     return (
@@ -101,7 +108,7 @@ function ClientCard({client, deleteClient, updateClient,}){
             <Button variant="contained" style={buttonstyle} startIcon={<DeleteIcon />} onClick={handleDelete} fullWidth>
                 Delete
             </Button>
-            <Button component={Link} to="/update" variant="contained" style={buttonstyle} fullWidth startIcon={<AutorenewIcon />} >
+            <Button component={Link} to="/update" variant="contained" style={buttonstyle} fullWidth startIcon={<AutorenewIcon />} onClick={handleClientUpdate}>
                 Update
             </Button>
             {/* <Button variant="contained" style={buttonstyle} fullWidth startIcon={<AutorenewIcon />} onClick={handleClientUpdate}>Update</Button> */}

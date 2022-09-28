@@ -1,19 +1,20 @@
 import React from 'react'
-import { Grid, Paper, TextField } from '@material-ui/core'
-// import Home from './Home'
-// import {Link} from 'react-router-dom'
+import { Grid, Paper, Avatar, TextField } from '@material-ui/core'
+import Home from './Home'
+import {Link} from 'react-router-dom'
 import { useState } from 'react'
 import Button from '@mui/material/Button'
 import TestForm from '../TestForm'
-import AutorenewIcon from '@mui/icons-material/Autorenew'
+// import AutorenewIcon from '@mui/icons-material/Autorenew'
+import AddCircleOutlinedIcon from '@mui/icons-material/AddCircleOutlined';
 
-function ClientForm({client, updateClient}){
+function CreateClientForm({client, deleteClient, updateClient}){
     const buttonstyle={padding :5, backgroundColor: '#05b7f1', width: 100, align: 'center', margin: "20px auto"}
     const paperstyle={padding :20, height:'80vh', width:500, margin:"20px auto"}
     const homebuttonstyle={padding :5, backgroundColor: '#05b7f1', margin: "10px"}
 
     const [errors, setErrors] = useState('')
-    // const [showButton, setShowButton] = useState(false)
+    const [showButton, setShowButton] = useState(false)
     const [name, setName] = useState('')
     const [age, setAge] = useState('')
     const [date_of_birth, setDateOfBirth] = useState('')
@@ -102,7 +103,7 @@ function ClientForm({client, updateClient}){
                     
                 </Grid>
                 <Grid item >
-                    <Button variant="contained" style={buttonstyle} startIcon={<AutorenewIcon />} onClick={handleClientUpdate} fullWidth>Update</Button>
+                    <Button variant="contained" style={buttonstyle} startIcon={<AddCircleOutlinedIcon />} onClick={handleClientUpdate} fullWidth>Create</Button>
                 </Grid>
                 </Paper>
                 <Paper>
@@ -115,4 +116,4 @@ function ClientForm({client, updateClient}){
     )
 }
 
-export default ClientForm
+export default CreateClientForm

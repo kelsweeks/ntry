@@ -86,9 +86,9 @@ function App() {
 
       <Route path='/case_managers/:id' element={<Dashboard updateCaseManager={updateCaseManager}/>}/>
 
-      <Route exact path='/' element={<Home clients={clients}/>}/>
+      <Route exact path='/' element={<Home clients={clients} updateCaseManager={updateCaseManager}/>}/>
       
-      <Route path="dashboard" element={<Dashboard/>}/>
+      <Route path="dashboard" element={<Dashboard updateCaseManager={updateCaseManager}/>}/>
       <Route path="clientform" element={<ClientForm updateCaseManager={updateCaseManager}/>}/>
       <Route path="logout" element={<LoggedOut/>}/>
       <Route path="clients" element={<Clients updateCaseManager={updateCaseManager}/>}/>

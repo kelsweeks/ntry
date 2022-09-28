@@ -11,6 +11,7 @@ import Home from './Home'
 function Clients() {
     const [clients, setClients] = useState([])
     const [errors, setErrors] = useState(false)
+    
     const buttonstyle={padding :5, backgroundColor: '#05b7f1', margin: "10px"}
 
     useEffect(() => {
@@ -26,19 +27,19 @@ function Clients() {
 
     const deleteClient = (id) => setClients(clients.filter(c => c.id !== id))
 
-    // const newClient = (NewClient) => {
-    //     setClients(clients => [NewClient, ...clients])
-    // }
+    const newClient = (NewClient) => {
+        setClients(clients => [NewClient, ...clients])
+    }
 
-    // const updateClient = (updatedClient) => setClients(clientobj => {
-    //     return clientobj.map(client => {
-    //         if(client.id === updatedClient.id){
-    //             return updatedClient
-    //         }else {
-    //             return client
-    //         }
-    //     })
-    // })
+    const updateClient = (updatedClient) => setClients(clientobj => {
+        return clientobj.map(client => {
+            if(client.id === updatedClient.id){
+                return updatedClient
+            }else {
+                return client
+            }
+        })
+    })
 
     return (
         <div>

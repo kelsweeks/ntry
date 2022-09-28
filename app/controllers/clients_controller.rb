@@ -34,7 +34,7 @@ class ClientsController < ApplicationController
     private
 
     def client_params
-        params.permit(:name, :age, :date_of_birth, :address, :phone, :email, :medical_history)
+        params.permit(:name, :age, :date_of_birth, :address, :phone, :email, :medical_history, :file)
     end
 
     # def render_unprocessable_entity_response(invalid)

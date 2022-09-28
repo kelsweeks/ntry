@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :clients, only: [ :index, :show, :create, :update, :destroy ]
-  resources :case_managers, only: [ :show ]
+  resources :case_managers, only: [ :index, :show ]
   resources :appointments, only: [ :index, :show, :create, :update, :destroy ]
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
@@ -15,9 +15,10 @@ Rails.application.routes.draw do
   # get '/clients', to: 'clients#show'
 
   # get '/authorized_user', to: 'case_managers#show'
-
+  get 'dashboard', to: 'case_managers#show'
 
   post '/clients', to: 'clients#create'
+  # delete '/u', to: "users#destroy"
   get '/', to: 'case_managers#show'
   patch '/update', to: 'clients#update', as: 'updateclient' #update
   # get 'maps', to: 'maps#from_api'

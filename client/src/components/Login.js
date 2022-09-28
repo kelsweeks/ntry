@@ -1,11 +1,12 @@
 import React from 'react';
-import { Grid, Paper, Avatar, TextField } from '@material-ui/core';
+import { Grid, Paper, Avatar, TextField, Typography } from '@material-ui/core';
 import Button from '@mui/material/Button';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 // import FormControlLabel from '@mui/material/FormControlLabel';
 // import Checkbox from '@mui/material/Checkbox';
 import {useNavigate} from 'react-router-dom'
 import {useState} from "react"
+import {Link} from 'react-router-dom';
 
 const Login=({updateCaseManager}) => {
     const paperstyle={padding :20, height:'40vh', width:300, margin:"20px auto"}
@@ -59,11 +60,15 @@ const Login=({updateCaseManager}) => {
                     <h2>Login</h2>
                 </Grid>
                 <form onSubmit={onSubmit}>
-                    <TextField variant='outlined' label="name" placeholder="Enter your name" fullWidth required name='name' value={name} onChange={handleChange}/>
+                    <Grid>
+                        <TextField variant='outlined' label="name" placeholder="Enter your name" fullWidth required name='name' value={name} onChange={handleChange}/>
+                    </Grid>
                     {/* <input type='text' name='name' value={name} onChange={handleChange}/> */}
                     {/* <TextField label="email" placeholder="Enter your email" fullWidth required/>
                     <input type='text' name='email' value={email} onChange={handleChange} /> */}
-                    <TextField variant='outlined' label="password" placeholder="Enter your password" type='password' fullWidth required name='password' value={password} onChange={handleChange}/>
+                    <Grid>
+                        <TextField variant='outlined' label="password" placeholder="Enter your password" type='password' fullWidth required name='password' value={password} onChange={handleChange}/>
+                    </Grid>
                     {/* <input type='password' name='password' value={password} onChange={handleChange} /> */}
                     {/* <FormControlLabel
                         control={
@@ -74,9 +79,16 @@ const Login=({updateCaseManager}) => {
                         }
                         label="Remember me"
                         /> */}
-                    <Button variant="contained" style={buttonstyle} type='submit' fullWidth>Login</Button>
+                    <Grid>
+                        <Button variant="contained" style={buttonstyle} type='submit' fullWidth>Login</Button>
+                    </Grid>
                 </form>
                 {errors? <div>{errors}</div>:null}
+                <Typography > Do you have an account ?
+                    <Link style={{textDecoration: "none", color:"#05b7f1"}}to="/signup" >
+                        Sign Up 
+                </Link>
+                </Typography>
             </Paper>
             {/* {errors?errors.map(e => <div>{e[0]+': ' + e[1]}</div>):null} */}
         </Grid>

@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState, useEffect} from 'react';
 import { Paper, Grid, TextField } from '@material-ui/core'
+import Button from '@mui/material/Button';
 
 function TestForm() {
     const [name, setName] = useState('')
@@ -8,7 +9,9 @@ function TestForm() {
     const [upload, setUpload] = useState(null)
     const [files, setFiles] = useState([])
     const [case_managers, setCaseManagers] = useState([])
+    
     const paperstyle={padding :20, height:'30vh', width:500, margin:"20px auto"}
+    const buttonstyle={backgroundColor: '#05b7f1'}
     
     useEffect(() => {
         fetch('/case_managers')
@@ -41,7 +44,7 @@ function TestForm() {
         <>
         <Grid>
             <Paper elevation={10} style={paperstyle} onSubmit={handleUploadSubmit}>
-                <h1 align='center'> Upload a File for Client </h1>
+                <h1 align='center'> Upload a File </h1>
             <Grid container direction={"column"} spacing={2}>
                 <Grid item align='center'>
                     <TextField variant='outlined' label="name" type="text" value={name} onChange={(e) => setName(e.target.value)}/>
@@ -53,7 +56,7 @@ function TestForm() {
                     <input variant='outlined' type="file"  accepts=".xlsx,.xls,image/*,.doc, .docx,.ppt, .pptx,.txt,.pdf" onChange={(e) => setUpload(e.target.files[0])}/>
                 </Grid>
                 <Grid item align='center'>
-                    <input type='submit'/>
+                    <Button variant='contained'style={buttonstyle}type='submit'>Submit</Button>
                 </Grid>
             </Grid>
             </Paper>

@@ -10,11 +10,11 @@ cm3 = CaseManager.create(name: "Joshua Glenn", email: "joshua@gmail.com", passwo
 
 
 puts "🦸‍♀️ Seeding Clients..."
-c1 = Client.create(name: Faker::Name.name, age: rand(18..81), address: Faker::Address.full_address, phone: Faker::PhoneNumber.cell_phone, email: Faker::Internet.email,medical_history: Faker::Hipster.paragraph(sentence_count: 2))
-c2 = Client.create(name: Faker::Name.name, age: rand(18..81), address: Faker::Address.full_address, phone: Faker::PhoneNumber.cell_phone, email: Faker::Internet.email,medical_history: Faker::Hipster.paragraph(sentence_count: 2))
-c3 = Client.create(name: Faker::Name.name, age: rand(18..81), address: Faker::Address.full_address, phone: Faker::PhoneNumber.cell_phone, email: Faker::Internet.email,medical_history: Faker::Hipster.paragraph(sentence_count: 2))
-c4 = Client.create(name: Faker::Name.name, age: rand(18..81), address: Faker::Address.full_address, phone: Faker::PhoneNumber.cell_phone, email: Faker::Internet.email,medical_history: Faker::Hipster.paragraph(sentence_count: 2))
-c5 = Client.create(name: Faker::Name.name, age: rand(18..81), address: Faker::Address.full_address, phone: Faker::PhoneNumber.cell_phone, email: Faker::Internet.email,medical_history: Faker::Hipster.paragraph(sentence_count: 2))
+c1 = Client.create(name: Faker::Name.name, age: rand(18..81), date_of_birth: Faker::Date.birthday(min_age: 18, max_age: 65), address: Faker::Address.full_address, phone: Faker::PhoneNumber.cell_phone, email: Faker::Internet.email,medical_history: Faker::Hipster.paragraph(sentence_count: 2))
+c2 = Client.create(name: Faker::Name.name, age: rand(18..81), date_of_birth: Faker::Date.birthday(min_age: 18, max_age: 65), address: Faker::Address.full_address, phone: Faker::PhoneNumber.cell_phone, email: Faker::Internet.email,medical_history: Faker::Hipster.paragraph(sentence_count: 2))
+c3 = Client.create(name: Faker::Name.name, age: rand(18..81), date_of_birth: Faker::Date.birthday(min_age: 18, max_age: 65), address: Faker::Address.full_address, phone: Faker::PhoneNumber.cell_phone, email: Faker::Internet.email,medical_history: Faker::Hipster.paragraph(sentence_count: 2))
+c4 = Client.create(name: Faker::Name.name, age: rand(18..81), date_of_birth: Faker::Date.birthday(min_age: 18, max_age: 65), address: Faker::Address.full_address, phone: Faker::PhoneNumber.cell_phone, email: Faker::Internet.email,medical_history: Faker::Hipster.paragraph(sentence_count: 2))
+c5 = Client.create(name: Faker::Name.name, age: rand(18..81), date_of_birth: Faker::Date.birthday(min_age: 18, max_age: 65), address: Faker::Address.full_address, phone: Faker::PhoneNumber.cell_phone, email: Faker::Internet.email,medical_history: Faker::Hipster.paragraph(sentence_count: 2))
 
 puts "🦸‍♀️ Seeding Appointments..."
 Appointment.create([
