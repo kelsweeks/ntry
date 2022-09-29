@@ -1,5 +1,5 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { useState } from 'react'
 import { Grid, Paper, Avatar } from '@material-ui/core'
 import {Link} from 'react-router-dom'
@@ -13,6 +13,7 @@ import AutorenewIcon from '@mui/icons-material/Autorenew'
 function ClientCard({caseManager, client, deleteClient, updateClient,}){
     const [errors, setErrors] = useState('')
     // const [showButton, setShowButton] = useState(false)
+
     const [name, setName] = useState('')
     const [age, setAge] = useState('')
     const [date_of_birth, setDateOfBirth] = useState('')
@@ -57,7 +58,6 @@ function ClientCard({caseManager, client, deleteClient, updateClient,}){
             }
         })
     }
-
     const handleClientUpdate = (e) => {
         e.preventDefault()
 
@@ -88,7 +88,7 @@ function ClientCard({caseManager, client, deleteClient, updateClient,}){
     const clientData = (e) => {
         console.log(e.target)
     }
-
+    const {id} = useParams()
     // Add Link to the update form to update button 
     return (
         <Grid>
@@ -108,7 +108,7 @@ function ClientCard({caseManager, client, deleteClient, updateClient,}){
             <Button variant="contained" style={buttonstyle} startIcon={<DeleteIcon />} onClick={handleDelete} fullWidth>
                 Delete
             </Button>
-            <Button component={Link} to="/update" variant="contained" style={buttonstyle} fullWidth startIcon={<AutorenewIcon />} onClick={handleClientUpdate}>
+            <Button component={Link} to={`/clients/${id}/edit`} variant="contained" style={buttonstyle} fullWidth startIcon={<AutorenewIcon />}>
                 Update
             </Button>
             {/* <Button variant="contained" style={buttonstyle} fullWidth startIcon={<AutorenewIcon />} onClick={handleClientUpdate}>Update</Button> */}

@@ -1,6 +1,6 @@
 class ClientsController < ApplicationController
     # rescue_from ActiveRecord::RecordInvalid, with: :invalid_record
-    before_action :is_authorized, only: [:create, :update, :destroy]
+    before_action :authorized_case_manager, only: [:create, :update, :destroy]
     
     def index
         render json: Client.all, status: :ok
@@ -34,7 +34,7 @@ class ClientsController < ApplicationController
     private
 
     def client_params
-        params.permit(:name, :age, :date_of_birth, :address, :phone, :email, :medical_history, :file)
+        params.permit(:name, :age, :date_of_birth, :address, :phone, :email, :medical_history)
     end
 
     # def render_unprocessable_entity_response(invalid)

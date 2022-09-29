@@ -1,13 +1,14 @@
 class CaseManagersController < ApplicationController
-    rescue_from ActiveRecord::RecordInvalid, with: :invalid_record  
-    skip_before_action :authenticate_case_manager, except: :show
+    # rescue_from ActiveRecord::RecordInvalid, with: :invalid_record  
+    skip_before_action :authorized_case_manager, only: [:create]
+    
     def index
         case_managers = CaseManager.all
         render json: case_managers, status: :ok
     end
 
     def show
-        case_manager = CaseManager.find(params[:id])
+        case_manager = @current_case_manager
         render json: case_manager, status: :ok
         # if current_case_manager
         #     render json:current_case_manager, status: :ok
@@ -28,11 +29,11 @@ class CaseManagersController < ApplicationController
 
     private
     def case_manager_params
-        params.permit(:name, :email, :password)
+        params.permit(:name, :email, :password, :files)
     end
 
-    def render_unprocessable_entity_response(invalid)
-        render json: { errors: invalid.record.errors.full_messages }, status: :unprocessable_entity
-    end
+    # def render_unprocessable_entity_response(invalid)
+    #     render json: { errors: invalid.record.errors.full_messages }, status: :unprocessable_entity
+    # end
 
 end

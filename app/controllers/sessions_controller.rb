@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-    skip_before_action :authenticate_case_manager, except: :destroy
+    skip_before_action :authorized_case_manager, except: :destroy
     # login
     def create 
         case_manager = CaseManager.find_by(name: params[:name])

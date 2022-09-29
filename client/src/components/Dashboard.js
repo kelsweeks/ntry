@@ -1,24 +1,44 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Typography, Container, Grid, Button } from '@mui/material'
+// import {Link} from 'react-router-dom'
 // import { useTheme } from '@mui/material/styles'
-import CaseManager from './CaseManager'
+// import CaseManager from './CaseManager'
 // import {Link} from 'react-router-dom'
 import Clients from './Clients'
 // import ClientCard from './ClientCard'
 
 
 
-function Dashboard({client,updateCaseManager,}){
+function Dashboard(setCurrentCaseManager){
     // const theme = useTheme()
-    const divstyle = {backgroundColor: '#D1E9FC', margin: '10px auto', height: '50vh', padding: '10px', borderradius: '20px'}
     // const appbarstyle={backgroundColor: '#05b7f1'}
-    const buttonstyle={padding :5, backgroundColor: '#05b7f1', margin: "10px", color: "white"}
+    // const [caseManager, setCaseManager] = useState()
+    const [errors, setErrors] = useState(false)
+    const divstyle = {backgroundColor: '#D1E9FC', margin: '10px auto', height: '50vh', padding: '10px', borderradius: '20px'}
+    const buttonstyle = {padding :5, backgroundColor: '#05b7f1', margin: "10px", color: "white"}
+    
+    useEffect(()=>{
+        fetch(`/authorized_case_manager`)
+        .then(res => {
+            if(res.ok){
+                res.json().then(caseManager => {
+                    setCurrentCaseManager(caseManager)
+                    console.log(caseManager)
+                })
+            }else {
+                res.json().then(data => setErrors((data.errors)))
+            }
+        })
+    }, [])
+
+    if(errors) return <h1>{errors}</h1>
+
     return (
         <Container maxWidth="xl">
-            {/* <Button component={Link} to="/clients" variant="contained" style={buttonstyle} updateCaseManager={updateCaseManager}>
+            <Button  variant="contained" style={buttonstyle} element={<Clients/>}>
                     Clients
-            </Button> */}
-            <Button  style={buttonstyle} element={<Clients/>}>Clients</Button>
+            </Button>
+            {/* <Button  style={buttonstyle} element={<Clients/>}>Clients</Button> */}
             <Typography variant="h4" align='center' sx={{ mb: 5 }}>Welcome to your dashboard!
                 {/* <h4 align='center' >Welcome to your dashboard!</h4> */}
             </Typography>

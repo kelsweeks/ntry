@@ -18,7 +18,7 @@ import Home from './Home'
 import { useNavigate} from 'react-router-dom';
 // import Logo from '../assets/Logo.png'
 import Logo from '../assets/Logo.svg'
-import PersonIcon from '@mui/icons-material/Person'
+// import PersonIcon from '@mui/icons-material/Person'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 const pages = ['SignUp', 'Login'];
@@ -37,8 +37,12 @@ function ResponsiveAppBar({ currentCaseManager, updateCaseManager}) {
         fetch('/logout',{
             method: "DELETE"
         })
-        updateCaseManager("")
-        navigate('/login')
+        .then(res => {
+            if(res.ok) {
+                updateCaseManager("")
+                navigate('/login')
+            }
+        })
     }
 
     const handleOpenNavMenu = (event) => {
@@ -112,7 +116,7 @@ function ResponsiveAppBar({ currentCaseManager, updateCaseManager}) {
                 {pages.map((page) => (
                     <MenuItem key={page} onClick={handleCloseNavMenu}>
                     <Typography textAlign="center">
-                        {/* {currentCaseManager ? <Link style={{textDecoration: "none", color:"black"}} to={`/${page}`}>{page}</Link> : null } */}
+                        {/* { !currentCaseManager ? <Link style={{textDecoration: "none", color:"black"}} to={`/${page}`}>{page}</Link> : null } */}
                         <Link style={{textDecoration: "none", color:"#FF3C00"}} to={`/${page}`}>{page}</Link>
                     </Typography>
                     </MenuItem>
@@ -153,7 +157,7 @@ function ResponsiveAppBar({ currentCaseManager, updateCaseManager}) {
             </Box>
 
             <Box sx={{ flexGrow: 0 }}>
-                {currentCaseManager ? <Link onClick={handleLogOut}>Log Out</Link> : null}
+                { !currentCaseManager? <Button onClick={handleLogOut}>Log Out</Button> : null}
                 <Tooltip title="Open settings">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                     <AccountCircleIcon style={{color: "#FFDD00"}} ></AccountCircleIcon>

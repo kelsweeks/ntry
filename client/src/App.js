@@ -11,6 +11,8 @@ import LoggedOut from "./components/LoggedOut";
 import Clients from './components/Clients';
 import ClientForm from "./components/ClientForm";
 import Appointments from './components/Appointments';
+import ClientCard from "./components/ClientCard";
+import CreateClientForm from "./components/CreateClientForm";
 // import Navigation from "./components/Navigation";
 // import TestForm from './TestForm';
 
@@ -23,17 +25,16 @@ function App() {
   const navigate = useNavigate()
 
   useEffect(() => {
-    fetchClients()
-    // fetch('/clients').then((res) => {
-    //   if (res.ok) {
-    //     res.json().then((case_manager) => {
-    //       setCurrentCaseManager(case_manager)
-    //       setIsAuthenticated(true)
-    //     })
-    //   }else {
-    //     res.json().then(console.log)
-    //   }
-    // })
+    fetch('/authorized_case_manager')
+    .then((res)=> {
+      if (res.ok) {
+        res.json()
+        .then((caseManager)=>{
+          setCurrentCaseManager(caseManager);
+          fetchClients()
+        })
+      }
+    })
   }, [])
 
   const fetchClients = () => {
@@ -74,25 +75,28 @@ function App() {
 
   return (
     <>
-    {/* <Navigation/> */}
-    <NavBar currentCaseManager={currentCaseManager} updateCaseManager={updateCaseManager}/>
+    {/* <GlobalStyle/> */}
+    <NavBar updateCaseManager={updateCaseManager}/>
+    {/* { !currentCaseManager? <Login error={'please login'} setCurrentCaseManager={setCurrentCaseManager}/> :  */}
     <Routes>
       {/* <Route>(false ? <Home/> : <LoggedOut/></Route> */}
-      <Route path="login" element={<Login updateCaseManager={updateCaseManager}/>}/>
-      <Route path="signup" element={<SignUp updateCaseManager={updateCaseManager}/>}/>
-
-      <Route path='/clients/new' element={<ClientForm addClient={addClient}/>}/>
-      <Route path='/clients/:id/edit' element={<ClientForm updateClient={updateClient}/>}/>
-
-      <Route path='/case_managers/:id' element={<Dashboard updateCaseManager={updateCaseManager}/>}/>
-
-      <Route exact path='/' element={<Home clients={clients} updateCaseManager={updateCaseManager}/>}/>
       
-      <Route path="dashboard" element={<Dashboard updateCaseManager={updateCaseManager}/>}/>
+      <Route path="login" element={<Login setCurrentCaseManager={setCurrentCaseManager}/>}/>
+      <Route path="signup" element={<SignUp />}/>
+
+      <Route path='/clients/new' element={<CreateClientForm addClient={addClient}/>}/>
+      <Route path='/clients/:id/edit' element={<ClientForm updateClient={updateClient}/>}/>
+      <Route path='/clients/:id' element={<ClientCard deleteClient={deleteClient}/>}/>
+
+      <Route path='/case_managers/:id' element={<Dashboard setCurrentCaseManager={setCurrentCaseManager}/>}/>
+
+      <Route exact path='/' element={<Home clients={clients} />}/>
+      
+      <Route path="dashboard" element={<Dashboard setCurrentCaseManager={setCurrentCaseManager}/>}/>
       <Route path="clientform" element={<ClientForm updateCaseManager={updateCaseManager}/>}/>
       <Route path="logout" element={<LoggedOut/>}/>
       <Route path="clients" element={<Clients updateCaseManager={updateCaseManager}/>}/>
-      <Route path="update" element={<ClientForm/>}/>
+      {/* <Route path="update" element={<ClientForm/>}/> */}
       <Route path="appointments" element={<Appointments/>}/>
     </Routes>
     </>
