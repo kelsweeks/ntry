@@ -36,7 +36,7 @@ function CreateClientForm({ addClient }){
         fetch('/clients', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json'},
-            body:JSON.stringify({...formData, ongoing:true})
+            body:JSON.stringify(formData)
         })
         .then(res => {
             if(res.ok) {

@@ -24,7 +24,7 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 const pages = ['SignUp', 'Login'];
 const settings = ['Dashboard', 'Logout'];
 
-function ResponsiveAppBar({ currentCaseManager, updateCaseManager}) {
+function ResponsiveAppBar({ currentCaseManager, setCurrentCaseManager, updateCaseManager}) {
     const logostyle ={width: 100, height: 100} 
     // const paperstyle={padding :20, height:'40vh', width:300, margin:"20px auto"}
     // const buttonstyle={backgroundColor: "#05b7f1"}
@@ -157,7 +157,7 @@ function ResponsiveAppBar({ currentCaseManager, updateCaseManager}) {
             </Box>
 
             <Box sx={{ flexGrow: 0 }}>
-                { !currentCaseManager? <Button onClick={handleLogOut}>Log Out</Button> : null}
+                { !setCurrentCaseManager? <Button onClick={handleLogOut}>Log Out</Button> : null}
                 <Tooltip title="Open settings">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                     <AccountCircleIcon style={{color: "#FFDD00"}} ></AccountCircleIcon>

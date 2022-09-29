@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import {useNavigate} from 'react-router';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, } from 'react-router-dom';
 import './App.css';
 import Login from './components/Login';
 import NavBar from './components/NavBar';
@@ -13,6 +13,7 @@ import ClientForm from "./components/ClientForm";
 import Appointments from './components/Appointments';
 import ClientCard from "./components/ClientCard";
 import CreateClientForm from "./components/CreateClientForm";
+import CaseManagerCard from "./components/CaseManagerCard";
 // import Navigation from "./components/Navigation";
 // import TestForm from './TestForm';
 
@@ -75,7 +76,7 @@ function App() {
 
   return (
     <>
-    {/* <GlobalStyle/> */}
+    
     <NavBar updateCaseManager={updateCaseManager}/>
     {/* { !currentCaseManager? <Login error={'please login'} setCurrentCaseManager={setCurrentCaseManager}/> :  */}
     <Routes>
@@ -90,12 +91,13 @@ function App() {
 
       <Route path='/case_managers/:id' element={<Dashboard setCurrentCaseManager={setCurrentCaseManager}/>}/>
 
-      <Route exact path='/' element={<Home clients={clients} />}/>
+      <Route exact path='/' element={<Home clients={clients} setCurrentCaseManager={setCurrentCaseManager}/>}/>
       
       <Route path="dashboard" element={<Dashboard setCurrentCaseManager={setCurrentCaseManager}/>}/>
       <Route path="clientform" element={<ClientForm updateCaseManager={updateCaseManager}/>}/>
       <Route path="logout" element={<LoggedOut/>}/>
       <Route path="clients" element={<Clients updateCaseManager={updateCaseManager}/>}/>
+      {/* <Route path="case_manager" element={<CaseManagerCard setCurrentCaseManager={setCurrentCaseManager}/>}></Route> */}
       {/* <Route path="update" element={<ClientForm/>}/> */}
       <Route path="appointments" element={<Appointments/>}/>
     </Routes>
@@ -104,6 +106,7 @@ function App() {
 }
 
 export default App;
+
 
 // function App() {
 

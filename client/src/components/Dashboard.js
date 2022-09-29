@@ -2,9 +2,11 @@ import React, { useState, useEffect } from 'react'
 import { Typography, Container, Grid, Button } from '@mui/material'
 // import {Link} from 'react-router-dom'
 // import { useTheme } from '@mui/material/styles'
-// import CaseManager from './CaseManager'
+import CaseManagerCard from './CaseManagerCard'
 // import {Link} from 'react-router-dom'
 import Clients from './Clients'
+import TestForm from '../TestForm'
+import ClientTable from './ClientTable'
 // import ClientCard from './ClientCard'
 
 
@@ -35,31 +37,35 @@ function Dashboard(setCurrentCaseManager){
 
     return (
         <Container maxWidth="xl">
-            <Button  variant="contained" style={buttonstyle} element={<Clients/>}>
+            {/* <Button  variant="contained" style={buttonstyle} element={<Clients/>}>
                     Clients
-            </Button>
+            </Button> */}
             {/* <Button  style={buttonstyle} element={<Clients/>}>Clients</Button> */}
-            <Typography variant="h4" align='center' sx={{ mb: 5 }}>Welcome to your dashboard!
-                {/* <h4 align='center' >Welcome to your dashboard!</h4> */}
+            {/* <Typography variant="h4" align='center' sx={{ mb: 5 }}>Welcome to your dashboard!</Typography> */}
+            <Typography variant="h4" sx={{ mb: 5 }} style={{padding: 20, margin: 10}}>
+                Hi, Welcome back
             </Typography>
 
-            <Grid container spacing={3}>
+
+            <Grid container spacing={5}>
                 <Grid item xs={12} sm={6} md={3}>
-                    {/* <CaseManager updateCaseManager={updateCaseManager}/> */}
-                    <div style={divstyle}>
+                    <CaseManagerCard/>
+                    {/* <div style={divstyle}>
                         <h4 align='center'>Display Case Manager Info Here</h4>
-                    </div>
+                    </div> */}
                 </Grid>
-                <Grid item xs={12} sm={6} md={3}>
-                    <div style={divstyle}>
+                <Grid item xs={12} sm={6} md={7}>
+                    <TestForm/>
+                    {/* <div style={divstyle}>
                         <h4 align= 'center'>something</h4>
-                    </div>
+                    </div> */}
                 </Grid>
-                <Grid item xs={12} md={6} lg={8}>
-                    <div style={divstyle}> 
+                <Grid item xs={12} md={6} lg={12}>
+                    <ClientTable/>
+                    {/* <div style={divstyle}> 
                         <h4 align='center'>Display Clients Table Here</h4>
-                        {/* <h4>{client.name}</h4> */}
-                    </div>
+                        <h4>{client.name}</h4>
+                    </div> */}
                 </Grid>
             </Grid>
         </Container>
