@@ -11,9 +11,10 @@ import LoggedOut from "./components/LoggedOut";
 import Clients from './components/Clients';
 import ClientForm from "./components/ClientForm";
 import Appointments from './components/Appointments';
-import ClientCard from "./components/ClientCard";
+import ClientDetail from "./components/ClientDetail";
 import CreateClientForm from "./components/CreateClientForm";
 import CaseManagerCard from "./components/CaseManagerCard";
+// import ThemeProvider from './theme';
 // import Navigation from "./components/Navigation";
 // import TestForm from './TestForm';
 
@@ -61,7 +62,7 @@ function App() {
     })
   })
 
-  const deleteClient = (id) => setClients(current => current.filter(p => p.id !== id))
+  const deleteClient = (id) => setClients(current => current.filter(c => c.id !== id))
 
   const logout = () => {
     setCurrentCaseManager(null)
@@ -76,7 +77,8 @@ function App() {
 
   return (
     <>
-    
+    {/* <ThemeProvider> */}
+
     <NavBar updateCaseManager={updateCaseManager}/>
     {/* { !currentCaseManager? <Login error={'please login'} setCurrentCaseManager={setCurrentCaseManager}/> :  */}
     <Routes>
@@ -87,7 +89,7 @@ function App() {
 
       <Route path='/clients/new' element={<CreateClientForm addClient={addClient}/>}/>
       <Route path='/clients/:id/edit' element={<ClientForm updateClient={updateClient}/>}/>
-      <Route path='/clients/:id' element={<ClientCard deleteClient={deleteClient}/>}/>
+      <Route path='/clients/:id' element={<ClientDetail deleteClient={deleteClient}/>}/>
 
       <Route path='/case_managers/:id' element={<Dashboard setCurrentCaseManager={setCurrentCaseManager}/>}/>
 
@@ -101,6 +103,7 @@ function App() {
       {/* <Route path="update" element={<ClientForm/>}/> */}
       <Route path="appointments" element={<Appointments/>}/>
     </Routes>
+    {/* </ThemeProvider> */}
     </>
   );
 }

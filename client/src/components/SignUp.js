@@ -38,7 +38,7 @@ function SignUp({ setCurrentCaseManager}) {
                 if(res.ok) {
                     res.json().then(caseManager => {
                         setCurrentCaseManager(caseManager)
-                        navigate(`/login`)
+                        navigate(`/`)
                     })
                 }else {
                     res.json().then(json => setErrors(Object.entries(json.errors)))

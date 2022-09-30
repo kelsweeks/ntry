@@ -7,6 +7,7 @@ import CaseManagerCard from './CaseManagerCard'
 import Clients from './Clients'
 import TestForm from '../TestForm'
 import ClientTable from './ClientTable'
+import ClientContainer from './ClientContainer'
 // import ClientCard from './ClientCard'
 
 
@@ -32,6 +33,18 @@ function Dashboard(setCurrentCaseManager){
             }
         })
     }, [])
+
+    const [clients, setClients] = useState([])
+    const deleteClient = (id) => setClients(current => current.filter(c => c.id !== id))
+    const updateClient = (updatedClient) => setClients(current => {
+        return current.map(client => {
+            if(client.id === updatedClient.id){
+                return updatedClient
+            }else {
+                return client
+            }
+        })
+    })
 
     if(errors) return <h1>{errors}</h1>
 
@@ -61,7 +74,8 @@ function Dashboard(setCurrentCaseManager){
                     </div> */}
                 </Grid>
                 <Grid item xs={12} md={6} lg={12}>
-                    <ClientTable/>
+                    <ClientTable deleteClient={deleteClient} updateClient={updateClient}/>
+                    {/* <ClientContainer deleteClient={deleteClient} /> */}
                     {/* <div style={divstyle}> 
                         <h4 align='center'>Display Clients Table Here</h4>
                         <h4>{client.name}</h4>
