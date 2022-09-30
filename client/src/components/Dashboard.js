@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Typography, Container, Grid, Button } from '@mui/material'
 // import {Link} from 'react-router-dom'
-// import { useTheme } from '@mui/material/styles'
+import { useTheme } from '@mui/material/styles'
 import CaseManagerCard from './CaseManagerCard'
 // import {Link} from 'react-router-dom'
 import Clients from './Clients'
@@ -12,7 +12,7 @@ import ClientTable from './ClientTable'
 
 
 function Dashboard(setCurrentCaseManager){
-    // const theme = useTheme()
+    const theme = useTheme()
     // const appbarstyle={backgroundColor: '#05b7f1'}
     // const [caseManager, setCaseManager] = useState()
     const [errors, setErrors] = useState(false)
