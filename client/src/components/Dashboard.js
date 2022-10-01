@@ -81,6 +81,14 @@ function Dashboard(setCurrentCaseManager){
                         <h4>{client.name}</h4>
                     </div> */}
                 </Grid>
+                <Grid item xs={12} md={6} lg={12}>
+                    <Clients deleteClient={deleteClient} updateClient={updateClient}/>
+                    {/* <ClientContainer deleteClient={deleteClient} /> */}
+                    {/* <div style={divstyle}> 
+                        <h4 align='center'>Display Clients Table Here</h4>
+                        <h4>{client.name}</h4>
+                    </div> */}
+                </Grid>
             </Grid>
         </Container>
     )

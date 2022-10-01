@@ -42,26 +42,27 @@ function ClientCard({caseManager, client, deleteClient, updateClient,}){
     //         }
     //     })
     // })
-
+    const params = useParams()
     function handleDelete(){
-        fetch(`/clients/${client.id}`,{
+        fetch(`/clients/${params.id}`,{
             method: 'DELETE',
             headers: {'Content-Type': 'application/json'}
         })
         .then(res => {
             if(res.ok){
-                deleteClient(client.id)
+                deleteClient(id)
                 navigate(`/case_managers/${caseManager.id}`)
             }else {
                 res.json().then(data => setErrors(data.errors))
                 // res.json().then(data => setErrors(Object.entries(data.errors).map(e => `${e[0]} ${e[1]}`)))
             }
         })
-        console.log("deleted")
+        console.log("I am trying to delete")
+        console.log(id)
     }
-    
+
     const handleClientUpdate = (e) => {
-        console.log("I Clicked Update")
+        // console.log("I Clicked Update")
         e.preventDefault()
 
         const clientInfo = {
@@ -86,6 +87,8 @@ function ClientCard({caseManager, client, deleteClient, updateClient,}){
                 res.json().then(data => setUpdateErrors((data.errors)))
             }
         })
+        console.log("I Clicked Update")
+        console.log(clientInfo)
     }
 
     const clientData = (e) => {
