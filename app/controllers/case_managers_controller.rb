@@ -17,6 +17,12 @@ class CaseManagersController < ApplicationController
         # end
     end
 
+    def update
+        caseManager = CaseManager.find(params[:id])
+        caseManager.update!(case_manager_params)
+        render json: caseManager, status: :accepted
+    end
+
     def create
         case_manager = CaseManager.create!(case_manager_params)
         if case_manager.valid?

@@ -62,13 +62,13 @@ function Dashboard(setCurrentCaseManager){
 
             <Grid container spacing={5}>
                 <Grid item xs={12} sm={6} md={3}>
-                    <CaseManagerCard/>
+                    <CaseManagerCard />
                     {/* <div style={divstyle}>
                         <h4 align='center'>Display Case Manager Info Here</h4>
                     </div> */}
                 </Grid>
                 <Grid item xs={12} sm={6} md={7}>
-                    <TestForm/>
+                    <TestForm setCurrentCaseManager={setCurrentCaseManager}/>
                     {/* <div style={divstyle}>
                         <h4 align= 'center'>something</h4>
                     </div> */}

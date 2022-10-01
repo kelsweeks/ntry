@@ -12,7 +12,7 @@ import AutorenewIcon from '@mui/icons-material/Autorenew'
 
 function ClientCard({caseManager, client, deleteClient, updateClient,}){
     const [errors, setErrors] = useState('')
-    // const [showButton, setShowButton] = useState(false)
+    const [showButton, setShowButton] = useState(false)
 
     const [name, setName] = useState('')
     const [age, setAge] = useState('')
@@ -29,9 +29,9 @@ function ClientCard({caseManager, client, deleteClient, updateClient,}){
 
     const navigate = useNavigate()
     
-    // const toggleButton = () => {
-    //     setShowButton(!showButton)
-    // }
+    const toggleButton = () => {
+        setShowButton(!showButton)
+    }
 
     // const updateClient = (updatedClient) => setClients(clientobj => {
     //     return clientobj.map(client => {
@@ -57,8 +57,11 @@ function ClientCard({caseManager, client, deleteClient, updateClient,}){
                 // res.json().then(data => setErrors(Object.entries(data.errors).map(e => `${e[0]} ${e[1]}`)))
             }
         })
+        console.log("deleted")
     }
+    
     const handleClientUpdate = (e) => {
+        console.log("I Clicked Update")
         e.preventDefault()
 
         const clientInfo = {
@@ -108,11 +111,25 @@ function ClientCard({caseManager, client, deleteClient, updateClient,}){
             <Button variant="contained" style={buttonstyle} startIcon={<DeleteIcon />} onClick={handleDelete} fullWidth>
                 Delete
             </Button>
-            <Button component={Link} to={`/clients/${id}/edit`} variant="contained" style={buttonstyle} fullWidth startIcon={<AutorenewIcon />}>
+            <Button variant="contained" style={buttonstyle} startIcon={<AutorenewIcon />} onClick={toggleButton} fullWidth >
                 Update
             </Button>
             {/* <Button variant="contained" style={buttonstyle} fullWidth startIcon={<AutorenewIcon />} onClick={handleClientUpdate}>Update</Button> */}
         </ButtonGroup>
+        {showButton ?                           
+            <form onSubmit={handleClientUpdate}>
+                <h1>Update A Client</h1>
+                <input placeholder={client.name} onChange={(e) => setName(e.target.value)}></input> 
+                <input placeholder={client.age} onChange={(e) => setAge(e.target.value)}></input>
+                <input placeholder={client.date_of_birth} onChange={(e) => setDateOfBirth(e.target.value)}></input>
+                <input placeholder={client.address} onChange={(e) => setAddress(e.target.value)}></input>
+                <input placeholder={client.phone} onChange={(e) => setPhone(e.target.value)}></input>
+                <input placeholder={client.email} onChange={(e) => setEmail(e.target.value)}></input>
+                <input placeholder={client.medical_history} onChange={(e) => setMedicalHistory(e.target.value)}></input>
+                <br/>
+                <input type='submit' value='Update'></input>
+            </form>
+            : null}
         </Paper>
         </Grid>
     )

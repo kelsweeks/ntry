@@ -56,7 +56,7 @@ function DataTable({deleteClient, updateClient}) {
         // })
         // .then(res => {
         //     if(res.ok){
-        //         deleteClient(clients)
+        //         deleteClient(client.id)
         //         navigate(`/dashboard`)
         //     }else {
         //         res.json().then(data => setDeleteErrors(data.errors))
@@ -69,7 +69,7 @@ function DataTable({deleteClient, updateClient}) {
         
 
     const [updatedErrors, setUpdatedErrors] = useState('')
-    function handleClickUpdate(event, cellValues, updatedClient, client) {
+    function handleClickUpdate(event, cellValues, updatedClient,) {
         console.log(clients);
         console.log("I Clicked Update")
         event.preventDefault()

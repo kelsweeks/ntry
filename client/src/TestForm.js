@@ -2,6 +2,7 @@ import React from 'react';
 import { useState, useEffect} from 'react';
 import { Paper, Grid, TextField } from '@material-ui/core'
 import Button from '@mui/material/Button';
+import axios from 'axios'
 
 function TestForm() {
     const [name, setName] = useState('')
@@ -19,13 +20,20 @@ function TestForm() {
         .then(data => setCaseManagers(data))
     }, [])
 
-    useEffect(() => {
-        fetch('/files')
-        .then(res => res.json())
-        .then(data => setFiles(data))
-    }, [])
+    // useEffect(() => {
+    //     fetch('/files')
+    //     .then(res => res.json())
+    //     .then(data => setFiles(data))
+    // }, [])
 
-    function handleUploadSubmit(e){
+    const handleFileUpload =(e)=> {
+        this.setState({
+            upload: e.target.files[0]
+        })
+    }
+
+    function handleFileSubmit(e){
+        console.log('I Clicked Upload')
         e.preventDefault()
 
         const formData = new FormData()
@@ -43,7 +51,7 @@ function TestForm() {
     return (
         <>
         <Grid>
-            <Paper elevation={10} style={paperstyle} onSubmit={handleUploadSubmit}>
+            <Paper elevation={10} style={paperstyle} onSubmit={handleFileUpload}>
                 <h1 align='center'> Upload a File </h1>
             <Grid container direction={"column"} spacing={2}>
                 <Grid item align='center'>
@@ -56,7 +64,7 @@ function TestForm() {
                     <input variant='outlined' type="file"  accepts=".xlsx,.xls,image/*,.doc, .docx,.ppt, .pptx,.txt,.pdf" onChange={(e) => setUpload(e.target.files[0])}/>
                 </Grid>
                 <Grid item align='center'>
-                    <Button variant='contained'style={buttonstyle}type='submit'>Submit</Button>
+                    <Button variant='contained' style={buttonstyle} type='submit'>Upload</Button>
                 </Grid>
             </Grid>
             </Paper>
