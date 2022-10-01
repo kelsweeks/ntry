@@ -7,7 +7,7 @@ import PersonIcon from '@mui/icons-material/Person'
 
 function CaseManagerCard() {
     const avatarStyle={backgroundColor: '#05b7f1'}
-    const paperstyle = {backgroundColor: '#D1E9FC', margin: '10px auto', height: '20vh', padding: '20px', borderradius: '20px', width: 400}
+    const paperstyle = {backgroundColor: '#D1E9FC', margin: '5px auto', height: '20vh', padding: '20px', borderradius: '20px', width: 300}
     const [caseManager, setCaseManager] = useState()
     const [loading, setLoading] = useState(true)
     const [errors, setErrors] = useState(false)

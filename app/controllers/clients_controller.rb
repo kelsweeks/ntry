@@ -1,6 +1,6 @@
 class ClientsController < ApplicationController
     # rescue_from ActiveRecord::RecordInvalid, with: :invalid_record
-    before_action :authorized_case_manager, only: [:create, :update, :destroy]
+    before_action :authorized_case_manager, only: [:destroy]
     
     def index
         render json: Client.all, status: :ok

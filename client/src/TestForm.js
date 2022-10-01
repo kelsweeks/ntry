@@ -11,7 +11,7 @@ function TestForm() {
     const [files, setFiles] = useState([])
     const [case_managers, setCaseManagers] = useState([])
     
-    const paperstyle={padding : '20px', height:'30vh', width:500, margin:"10px auto"}
+    const paperstyle={padding : '20px', height:'30vh', width:500, margin:"5px auto"}
     const buttonstyle={backgroundColor: '#05b7f1'}
     
     useEffect(() => {

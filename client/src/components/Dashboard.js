@@ -8,6 +8,7 @@ import Clients from './Clients'
 import TestForm from '../TestForm'
 import ClientTable from './ClientTable'
 import ClientContainer from './ClientContainer'
+import CreateClientForm from './CreateClientForm'
 // import ClientCard from './ClientCard'
 
 
@@ -67,11 +68,22 @@ function Dashboard({setCurrentCaseManager}){
                         <h4 align='center'>Display Case Manager Info Here</h4>
                     </div> */}
                 </Grid>
-                <Grid item xs={12} sm={6} md={7}>
+                <Grid item xs={12} sm={6} md={5}>
                     <TestForm setCurrentCaseManager={setCurrentCaseManager}/>
                     {/* <div style={divstyle}>
                         <h4 align= 'center'>something</h4>
                     </div> */}
+                </Grid>
+                <Grid item xs={12} sm={6} md={3}>
+                    <CreateClientForm setCurrentCaseManager={setCurrentCaseManager}/>
+                    {/* <div style={divstyle}>
+                        <h4 align= 'center'>something</h4>
+                    </div> */}
+                </Grid>
+                <Grid item xs={12} md={12} lg={8}>
+                    <div style={divstyle}>
+                        <h4 align= 'center'>something</h4>
+                    </div>
                 </Grid>
                 <Grid item xs={12} md={6} lg={12}>
                     <Clients deleteClient={deleteClient} updateClient={updateClient}/>
