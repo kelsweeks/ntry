@@ -35,7 +35,7 @@ class CaseManagersController < ApplicationController
 
     private
     def case_manager_params
-        params.permit(:name, :email, :password, :files)
+        params.permit(:name, :email, :password, :upload)
     end
 
     # def render_unprocessable_entity_response(invalid)

@@ -2,42 +2,44 @@ import React from 'react';
 import { useState, useEffect} from 'react';
 import { Paper, Grid, TextField } from '@material-ui/core'
 import Button from '@mui/material/Button';
-import axios from 'axios'
+// import axios from 'axios'
 
 function TestForm() {
     const [name, setName] = useState('')
     const [note, setNote] = useState('')
     const [upload, setUpload] = useState(null)
     const [files, setFiles] = useState([])
-    const [case_managers, setCaseManagers] = useState([])
+    const [caseManagers, setCaseManagers] = useState([])
     
     const paperstyle={padding : '20px', height:'30vh', width:500, margin:"5px auto"}
     const buttonstyle={backgroundColor: '#05b7f1'}
     
+
+    // is this reduntant since i already passed setCaseManager={setCaseManager} in the parent Dashboard component?
     useEffect(() => {
-        fetch('/case_managers')
+        fetch(`/case_managers`)
         .then(res => res.json())
         .then(data => setCaseManagers(data))
     }, [])
 
-    // useEffect(() => {
-    //     fetch('/files')
-    //     .then(res => res.json())
-    //     .then(data => setFiles(data))
-    // }, [])
+    useEffect(() => {
+        fetch('/files')
+        .then(res => res.json())
+        .then(data => setFiles(data))
+    }, [])
 
-    const handleFileUpload =(e)=> {
-        this.setState({
-            upload: e.target.files[0]
-        })
-    }
+    // const handleFileUpload =(e)=> {
+    //     this.setState({
+    //         upload: e.target.files[0]
+    //     })
+    // }
 
     function handleFileSubmit(e){
-        console.log('I Clicked Upload')
+        // console.log('I Clicked Upload')
         e.preventDefault()
 
         const formData = new FormData()
-        formData.append('case_manager_id', case_managers[0].id)
+        formData.append('case_manager_id', caseManagers[0].id)
         formData.append('name', name)
         formData.append('note', note)
         formData.append('upload', upload)
@@ -46,12 +48,13 @@ function TestForm() {
             method: 'POST',
             body: formData
         })
+        console.log('I Clicked Upload + and UPLOADED A FILE')
     }
 
     return (
         <>
         <Grid>
-            <Paper elevation={10} style={paperstyle} onSubmit={handleFileUpload}>
+            <Paper elevation={10} style={paperstyle} onSubmit={handleFileSubmit}>
                 <h1 align='center'> Upload a File </h1>
             <Grid container direction={"column"} spacing={2}>
                 <Grid item align='center'>

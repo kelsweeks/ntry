@@ -44,14 +44,14 @@ function ClientCard({caseManager, client, deleteClient, updateClient,}){
     // })
     const params = useParams()
     function handleDelete(){
-        fetch(`/clients/${params.id}`,{
+        fetch(`/clients/${client.id}`,{
             method: 'DELETE',
             headers: {'Content-Type': 'application/json'}
         })
         .then(res => {
             if(res.ok){
                 deleteClient(id)
-                navigate(`/case_managers/${caseManager.id}`)
+                navigate(`/dashboard`)
             }else {
                 res.json().then(data => setErrors(data.errors))
                 // res.json().then(data => setErrors(Object.entries(data.errors).map(e => `${e[0]} ${e[1]}`)))
@@ -83,6 +83,7 @@ function ClientCard({caseManager, client, deleteClient, updateClient,}){
             if(res.ok){
                 res.json().then(updateClient)
                 e.target.reset()
+                navigate(`/dashboard`)
             }else {
                 res.json().then(data => setUpdateErrors((data.errors)))
             }

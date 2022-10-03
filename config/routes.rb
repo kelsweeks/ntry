@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resource :files, only: [ :index, :create ]
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   get '/hello', to: 'application#hello_world'
-  get '/files', to: 'files#index'
+  # get '/files', to: 'files#index'
 
   
   get '/authorized_case_manager', to: 'case_managers#show'

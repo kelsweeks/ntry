@@ -1,6 +1,6 @@
 class FilesController < ApplicationController
     # skip_before_action :authorized_case_manager, only: [:create]
-    before_action :authorized_case_manager, only: [:show, :create]
+    before_action :authorized_case_manager, only: [ :create]
 
     def index
         render json: File.all
