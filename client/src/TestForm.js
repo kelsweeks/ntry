@@ -15,18 +15,13 @@ function TestForm() {
     const buttonstyle={backgroundColor: '#05b7f1'}
     
 
-    // is this reduntant since i already passed setCaseManager={setCaseManager} in the parent Dashboard component?
+    // is this redundant since i already passed setCaseManager={setCaseManager} in the parent Dashboard component?
     useEffect(() => {
         fetch(`/case_managers`)
         .then(res => res.json())
         .then(data => setCaseManagers(data))
     }, [])
 
-    useEffect(() => {
-        fetch('/files')
-        .then(res => res.json())
-        .then(data => setFiles(data))
-    }, [])
 
     // const handleFileUpload =(e)=> {
     //     this.setState({
@@ -37,9 +32,8 @@ function TestForm() {
     function handleFileSubmit(e){
         // console.log('I Clicked Upload')
         e.preventDefault()
-
+        console.log('is this the file upload?')
         const formData = new FormData()
-        formData.append('case_manager_id', caseManagers[0].id)
         formData.append('name', name)
         formData.append('note', note)
         formData.append('upload', upload)
@@ -54,7 +48,7 @@ function TestForm() {
     return (
         <>
         <Grid>
-            <Paper elevation={10} style={paperstyle} onSubmit={handleFileSubmit}>
+            <Paper elevation={10} style={paperstyle} >
                 <h1 align='center'> Upload a File </h1>
             <Grid container direction={"column"} spacing={2}>
                 <Grid item align='center'>
@@ -64,10 +58,10 @@ function TestForm() {
                     <TextField variant='outlined' label="note" type="text" value={note} onChange={(e) => setNote(e.target.value)}/>
                 </Grid>
                 <Grid item align='center'>
-                    <input variant='outlined' type="file"  accepts=".xlsx,.xls,image/*,.doc, .docx,.ppt, .pptx,.txt,.pdf" onChange={(e) => setUpload(e.target.files[0])}/>
+                    <input variant='outlined' type="file"  accepts=".xlsx,.xls,image/*,.doc, .docx,.ppt, .pptx,.txt,.pdf" onChange={(e) => setUpload(e.target.files[0])} />
                 </Grid>
                 <Grid item align='center'>
-                    <Button variant='contained' style={buttonstyle} type='submit'>Upload</Button>
+                    <Button variant='contained' style={buttonstyle} type='submit' onClick={handleFileSubmit}>Upload</Button>
                 </Grid>
             </Grid>
             </Paper>

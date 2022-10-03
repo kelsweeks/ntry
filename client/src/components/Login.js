@@ -41,9 +41,14 @@ function Login({currentCaseManager, setCurrentCaseManager }) {
                     navigate(`/dashboard`)
                 })
             }else {
-                res.json().then(json => setErrors(json.errors))
+                res.json().then(json => {
+                    setErrors(json.errors)
+                    console.log(json)
+                }
+                )
             }
         })
+        
     }
 
     const handleChange = (e) => {

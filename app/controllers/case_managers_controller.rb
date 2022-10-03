@@ -1,6 +1,7 @@
 class CaseManagersController < ApplicationController
     # rescue_from ActiveRecord::RecordInvalid, with: :invalid_record  
     skip_before_action :authorized_case_manager, only: [:create]
+    include ActiveStorage::Blob::Analyzable
     
     def index
         case_managers = CaseManager.all
@@ -8,13 +9,20 @@ class CaseManagersController < ApplicationController
     end
 
     def show
-        case_manager = @current_case_manager
+        case_manager = current_case_manager
         render json: case_manager, status: :ok
         # if current_case_manager
         #     render json:current_case_manager, status: :ok
         # else
         #     render json: {error: "No current session stored"}, status: :unauthorized
         # end
+    end
+
+    def file_upload
+        caseManager = current_case_manager
+        caseManager.upload= params[:upload]
+        caseManager.save
+        render json: caseManager, status: :ok
     end
 
     def update
@@ -36,6 +44,10 @@ class CaseManagersController < ApplicationController
     private
     def case_manager_params
         params.permit(:name, :email, :password, :upload)
+    end
+
+    def file_test_params
+        params.permit(:upload)
     end
 
     # def render_unprocessable_entity_response(invalid)

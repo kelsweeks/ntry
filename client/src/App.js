@@ -32,6 +32,7 @@ function App() {
       if (res.ok) {
         res.json()
         .then((caseManager)=>{
+          console.log(caseManager)
           setCurrentCaseManager(caseManager);
           fetchClients()
         })

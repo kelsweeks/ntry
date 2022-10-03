@@ -11,7 +11,7 @@ class ApplicationController < ActionController::API
     #     render json: { count: session[:count] }
     # end
     def current_case_manager 
-        @current_case_manager ||= CaseManager.find_by_id(session[:case_manager_id])
+        CaseManager.find_by_id(session[:case_manager_id])
     end
     
     def authorized_case_manager
