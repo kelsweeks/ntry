@@ -24,7 +24,7 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 const pages = ['SignUp', 'Login'];
 const settings = ['Dashboard', 'Logout'];
 
-function ResponsiveAppBar({ currentCaseManager, setCurrentCaseManager, updateCaseManager}) {
+function ResponsiveAppBar({ currentCaseManager, setCurrentCaseManager, updateCaseManager, logout}) {
     const logostyle ={width: 100, height: 100} 
     // const paperstyle={padding :20, height:'40vh', width:300, margin:"20px auto"}
     // const buttonstyle={backgroundColor: "#05b7f1"}
@@ -40,7 +40,7 @@ function ResponsiveAppBar({ currentCaseManager, setCurrentCaseManager, updateCas
         .then(res => {
             if(res.ok) {
                 updateCaseManager("")
-                navigate('/login')
+                navigate('/')
             }
         })
     }
@@ -59,7 +59,8 @@ function ResponsiveAppBar({ currentCaseManager, setCurrentCaseManager, updateCas
     const handleCloseUserMenu = () => {
         setAnchorElUser(null);
     };
-    const appbarstyle={backgroundColor: '#05b7f1'}
+    const appbarstyle={backgroundColor: '#05b7f1'} //background color : #171C24
+
     return (
         <AppBar style={appbarstyle}position="static">
         <Container maxWidth="xl">
@@ -72,7 +73,7 @@ function ResponsiveAppBar({ currentCaseManager, setCurrentCaseManager, updateCas
                 element={<Home/>}
                 sx={{
                 mr: 2,
-                display: { xs: 'none', md: 'flex' },
+                display: { xs: 'none', lg: 'flex' },
                 fontFamily: 'monospace',
                 fontWeight: 700,
                 letterSpacing: '.3rem',
@@ -157,7 +158,7 @@ function ResponsiveAppBar({ currentCaseManager, setCurrentCaseManager, updateCas
             </Box>
 
             <Box sx={{ flexGrow: 0 }}>
-                { !setCurrentCaseManager? <Button onClick={handleLogOut}>Log Out</Button> : null}
+                { !setCurrentCaseManager ? <Button logout={logout} onClick={handleLogOut} style={{textDecoration: 'none', color: 'white'}}>Log Out</Button> : null}
                 <Tooltip title="Open settings">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                     <AccountCircleIcon style={{color: "#FFDD00"}} ></AccountCircleIcon>

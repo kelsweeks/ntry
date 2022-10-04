@@ -10,7 +10,7 @@ import AddCircleOutlinedIcon from '@mui/icons-material/AddCircleOutlined';
 
 function CreateClientForm({ addClient }){
     const buttonstyle={padding :5, backgroundColor: '#05b7f1', width: 100, align: 'center', margin: "20px auto"}
-    const paperstyle={padding : '20px', height:'80vh', width:500, margin:"10px auto"}
+    const paperstyle={padding : '20px', height:'60vh', width:500, margin:'5px auto'}
     const homebuttonstyle={padding :5, backgroundColor: '#05b7f1', margin: "10px"}
     const [showButton, setShowButton] = useState(false)
     const [name, setName] = useState('')

@@ -6,30 +6,29 @@ import React from 'react';
 import '../App.css';
 // import Clients from './Clients';
 import Login from './Login'
+import Button from '@mui/material/Button';
+import { Grid, Paper, Avatar, TextField, Typography } from '@material-ui/core';
+import Logo from '../assets/Logo.svg'
+import hero from '../assets/hero.png'
 // you see this page if you are logged in
 
 function Home({logout,setCurrentCaseManager}) {
-    // const buttonstyle={padding :5, backgroundColor: '#05b7f1', margin: "10px"}
+    const buttonstyle={ variant: 'contained', size: 'large', padding :10, backgroundColor: '#05b7f1', margin: "20px", color: 'white' }
+    const divstyle = {backgroundColor: '#171C24', margin: '100px auto', height: '60vh', padding: 20, borderradius: '20px', width: 900}
+    const paperstyle={padding :20, height:'50vh', width:300, margin:"20px auto"}
 
     return (
         <div align='center'>
-            <h1>This is the ("HOME") landing page</h1>
-            {/* <a> I want this page to be the first page a user sees when they come to app -- if a user is not logged in, this is the only page they can access</a> */}
-            {/* <h4>it should include:</h4>
-                <li>Login Component</li>
-                <li>SignUp Option</li> */}
-            <Login setCurrentCaseManager={setCurrentCaseManager}/>
-            {/* <ResponsiveAppBar/>
-            <Button onClick={logout}> logout </Button>
-            <h1>Home</h1>
-            <Routes>
-                <Route strict path='/clients'>
-                    <Clients/>
-                </Route>
-            </Routes>
-            <Button component={Link} to="/clients" variant="contained" style={buttonstyle}>
-                Clients
-            </Button> */}
+            <Paper elevation={10} style={divstyle}>
+                <Grid container direction={"column"} spacing={2}>
+                    <Grid item>
+                        <img src={hero} style={{height: '40vh', padding: 10, }}></img>
+                        {/* <h1 style={{color: 'white', padding: 50, margin: '10px auto'}}> Welcome to Current Your agencies tool for doing good</h1> */}
+                        <Button style={buttonstyle} href={'/signup'}> SIGNUP </Button> <Button style={buttonstyle} href={'/login'}> LOGIN </Button>
+                    </Grid>
+                </Grid>
+            </Paper>
+            {/* <Login setCurrentCaseManager={setCurrentCaseManager}/> */}
         </div>
     )
 }

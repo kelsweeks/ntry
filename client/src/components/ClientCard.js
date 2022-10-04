@@ -24,7 +24,7 @@ function ClientCard({caseManager, client, deleteClient, updateClient,}){
     const [updateErrors, setUpdateErrors] = useState('')
 
     const avatarStyle={backgroundColor: '#05b7f1'}
-    const paperstyle={padding :20, height:'50vh', width:300, margin:"20px auto", backgroundColor: '#EDEDED'}
+    const paperstyle={padding :20, height:'60vh', width:300, margin:"20px auto", backgroundColor: '#EDEDED'}
     const buttonstyle={padding :5, backgroundColor: '#05b7f1', margin: "10px", justify: 'center'}
 
     const navigate = useNavigate()
@@ -104,13 +104,15 @@ function ClientCard({caseManager, client, deleteClient, updateClient,}){
                     <Avatar style={avatarStyle}><PersonIcon></PersonIcon></Avatar>
                     <h2>{client.name}</h2>
             </Grid>
-            <h5>Age: {client.age}</h5>
-            <h5>Date Of Birth: {client.date_of_birth}</h5>
-            <h5>Address: {client.address}</h5>
-            <h5>Phone: {client.phone}</h5>
-            <h5>Email: {client.email}</h5>
-            <h5> Brief Medical History:</h5>
-            <a>{client.medical_history}</a>
+            <div>
+                <h5>Age: {client.age}</h5>
+                <h5>Date Of Birth: {client.date_of_birth}</h5>
+                <h5>Address: {client.address}</h5>
+                <h5>Phone: {client.phone}</h5>
+                <h5>Email: {client.email}</h5>
+                <h5> Notes:</h5>
+                <a>{client.medical_history}</a>
+            </div>
         <ButtonGroup container='true'>
             <Button variant="contained" style={buttonstyle} startIcon={<DeleteIcon />} onClick={handleDelete} fullWidth>
                 Delete

@@ -51,16 +51,9 @@ function Dashboard({setCurrentCaseManager}){
 
     return (
         <Container maxWidth="xl">
-            {/* <Button  variant="contained" style={buttonstyle} element={<Clients/>}>
-                    Clients
-            </Button> */}
-            {/* <Button  style={buttonstyle} element={<Clients/>}>Clients</Button> */}
-            {/* <Typography variant="h4" align='center' sx={{ mb: 5 }}>Welcome to your dashboard!</Typography> */}
             <Typography variant="h4" sx={{ mb: 5 }} style={{padding: 20, margin: 10}}>
                 Hi, Welcome back
             </Typography>
-
-
             <Grid container spacing={5}>
                 <Grid item xs={12} sm={6} md={3}>
                     <CaseManagerCard />
@@ -68,38 +61,22 @@ function Dashboard({setCurrentCaseManager}){
                         <h4 align='center'>Display Case Manager Info Here</h4>
                     </div> */}
                 </Grid>
-                <Grid item xs={12} sm={6} md={5}>
+                <Grid item xs={12} sm={6} md={3}>
                     <TestForm setCurrentCaseManager={setCurrentCaseManager}/>
-                    {/* <div style={divstyle}>
-                        <h4 align= 'center'>something</h4>
-                    </div> */}
                 </Grid>
                 <Grid item xs={12} sm={6} md={3}>
                     <CreateClientForm setCurrentCaseManager={setCurrentCaseManager}/>
-                    {/* <div style={divstyle}>
-                        <h4 align= 'center'>something</h4>
-                    </div> */}
                 </Grid>
-                <Grid item xs={12} md={12} lg={8}>
+                {/* <Grid item xs={12} md={12} lg={8}>
                     <div style={divstyle}>
                         <h4 align= 'center'>something</h4>
                     </div>
-                </Grid>
+                </Grid> */}
                 <Grid item xs={12} md={6} lg={12}>
                     <Clients deleteClient={deleteClient} updateClient={updateClient}/>
-                    {/* <ClientContainer deleteClient={deleteClient} /> */}
-                    {/* <div style={divstyle}> 
-                        <h4 align='center'>Display Clients Table Here</h4>
-                        <h4>{client.name}</h4>
-                    </div> */}
                 </Grid>
                 <Grid item xs={12} md={6} lg={12}>
                     <ClientTable deleteClient={deleteClient} updateClient={updateClient}/>
-                    {/* <ClientContainer deleteClient={deleteClient} /> */}
-                    {/* <div style={divstyle}> 
-                        <h4 align='center'>Display Clients Table Here</h4>
-                        <h4>{client.name}</h4>
-                    </div> */}
                 </Grid>
             </Grid>
         </Container>

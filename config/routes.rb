@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   get '/hello', to: 'application#hello_world'
 
   post '/files', to: 'case_managers#file_upload'
+  # Save upload
+  post '/setting_upload', to: "case_managers#set_upload"
   
   get '/authorized_case_manager', to: 'case_managers#show'
   post '/signup', to: 'case_managers#create'

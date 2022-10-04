@@ -7,7 +7,7 @@ import LockOpenOutlinedIcon from '@mui/icons-material/LockOpenOutlined';
 // import Checkbox from '@mui/material/Checkbox';
 
 function SignUp({ setCurrentCaseManager}) {
-    const paperstyle={padding :20, height:'45vh', width:300, margin:"20px auto"}
+    const paperstyle={padding :20, height:'45vh', width:300, margin:"100px auto"}
     const avatarStyle={backgroundColor: '#05b7f1'}
     const buttonstyle={backgroundColor: '#05b7f1'}
 

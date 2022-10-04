@@ -13,29 +13,8 @@ function DataTable({deleteClient, updateClient}) {
 
     const paperstyle={padding : 20, height:'30vh', width: '75%', margin:"10px auto"}
     const [clients, setClients] = useState([])
-
-    // const [tableData, setTableData] = useState([])
-    // const [errors, setErrors] = useState(false)
-    // const [updateErrors, setUpdateErrors] = useState('')
     const params = useParams()
     const navigate = useNavigate()
-    
-
-    // function handleDelete() {
-    //     console.log("You Clicked Delete!")
-    // }
-
-    // const deleteClient = (id) => setClients(current.filter(client => client.id !== id))
-    // const updateClient = (updatedClient) => setClients(current => {
-    //     console.log(updatedClient)
-    //     return current.map(client => {
-    //         if(client.id === updatedClient.id){
-    //             return updatedClient
-    //         }else {
-    //             return client
-    //         }
-    //     })
-    // })
 
     useEffect(() => {
         fetch('/clients')
@@ -49,45 +28,14 @@ function DataTable({deleteClient, updateClient}) {
     function handleClickDelete({deleteClient, cellValues, rowId, }) {
         console.log(clients)
         console.log("I Clicked Delete!");
-        
-        // fetch(`/clients/${params.id}`,{
-        //     method: 'DELETE',
-        //     headers: {'Content-Type': 'application/json'}
-        // })
-        // .then(res => {
-        //     if(res.ok){
-        //         deleteClient(client.id)
-        //         navigate(`/dashboard`)
-        //     }else {
-        //         res.json().then(data => setDeleteErrors(data.errors))
-        //         // res.json().then(data => setErrors(Object.entries(data.errors).map(e => `${e[0]} ${e[1]}`)))
-        //     }
-        // })
-        
     }
         
-        
-
     const [updatedErrors, setUpdatedErrors] = useState('')
+    
     function handleClickUpdate(event, cellValues, updatedClient,) {
         console.log(clients);
         console.log("I Clicked Update")
         event.preventDefault()
-        
-        // fetch(`/clients/${client.id}`, {
-        //     method: 'PATCH',
-        //     headers: { 'Content-Type': 'application/json' },
-        //     body:JSON.stringify(cellValues)
-        // })
-        // .then(res => {
-        //     if(res.ok){
-        //         res.json().then(updateClient)
-        //         event.target.reset()
-        //     }else {
-        //         res.json().then(data => setUpdatedErrors((data.errors)))
-        //     }
-        // })
-    
     }
     
     const handleCellClick = (param, event) => {
@@ -138,15 +86,6 @@ function DataTable({deleteClient, updateClient}) {
             );
             }
         },
-        // {
-        //     field: 'actions',
-        //     headerName: 'ACTIONS',
-        //     type: 'actions',
-        //     renderCell: params=> (
-        //         <TableActions {...{params, rowId, setRowId}}/>
-        //     ),
-        // },
-        // [rowId]
     ]
 
     return (

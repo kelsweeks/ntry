@@ -25,6 +25,15 @@ class CaseManagersController < ApplicationController
         render json: caseManager, status: :ok
     end
 
+    def set_upload
+        caseManager = current_case_manager
+        if caseManager
+            caseManager.upload.attach(params[:upload])
+        else
+            render json: {error: "Image Upload"}
+        end
+    end
+
     def update
         caseManager = CaseManager.find(params[:id])
         caseManager.update!(case_manager_params)

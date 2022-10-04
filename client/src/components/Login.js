@@ -9,7 +9,7 @@ import {useState} from "react"
 import {Link} from 'react-router-dom';
 
 function Login({currentCaseManager, setCurrentCaseManager }) {
-    const paperstyle={padding :20, height:'40vh', width:300, margin:"20px auto"}
+    const paperstyle={padding :20, height:'40vh', width:300, margin:"100px auto"}
     const avatarStyle={backgroundColor: '#05b7f1'}
     const buttonstyle={backgroundColor: '#05b7f1'}
 
@@ -61,40 +61,30 @@ function Login({currentCaseManager, setCurrentCaseManager }) {
     return (
         <Grid>
             <Paper elevation={10} style={paperstyle} onSubmit={onSubmit}>
-                <Grid align= 'center'>
-                    <Avatar style={avatarStyle}><LockOutlinedIcon></LockOutlinedIcon></Avatar>
-                    <h2>Login</h2>
+                <Grid container direction={"column"} spacing={2}>
+                    <Grid item align= 'center'>
+                        <Avatar style={avatarStyle}><LockOutlinedIcon></LockOutlinedIcon></Avatar>
+                        <h2>Login</h2>
+                    </Grid>
+                    <form >
+                        <Grid item align='center'>
+                            <TextField variant='outlined' label="name" placeholder="Enter your name" fullWidth required name='name' value={formData.name} onChange={handleChange}/>
+                        </Grid>
+                        <Grid item align='center'>
+                            <TextField variant='outlined' label="password" placeholder="Enter your password" type='password' fullWidth required name='password' value={formData.password} onChange={handleChange}/>
+                        </Grid>
+                        <Grid item align='center'>
+                            <Button variant="contained" style={buttonstyle} type='submit' fullWidth>Login</Button>
+                        </Grid>
+                    </form>
+                    {errors? <div>{errors}</div>:null}
+                    <Typography align='center'> Do you have an account ?
+                        <Link style={{textDecoration: "none", color:"#05b7f1"}}to="/signup" >
+                            Sign Up 
+                        </Link>
+                    </Typography>
                 </Grid>
-                <form >
-                    <Grid>
-                        <TextField variant='outlined' label="name" placeholder="Enter your name" fullWidth required name='name' value={formData.name} onChange={handleChange}/>
-                    </Grid>
-                    {/* <input type='text' name='name' value={name} onChange={handleChange}/> */}
-                    {/* <TextField label="email" placeholder="Enter your email" fullWidth required/>
-                    <input type='text' name='email' value={email} onChange={handleChange} /> */}
-                    <Grid>
-                        <TextField variant='outlined' label="password" placeholder="Enter your password" type='password' fullWidth required name='password' value={formData.password} onChange={handleChange}/>
-                    </Grid>
-                    {/* <input type='password' name='password' value={password} onChange={handleChange} /> */}
-                    {/* <FormControlLabel
-                        control={
-                        <Checkbox
-                            name= "checkedB"
-                            color="primary"
-                        />
-                        }
-                        label="Remember me"
-                        /> */}
-                    <Grid>
-                        <Button variant="contained" style={buttonstyle} type='submit' fullWidth>Login</Button>
-                    </Grid>
-                </form>
-                {errors? <div>{errors}</div>:null}
-                <Typography > Do you have an account ?
-                    <Link style={{textDecoration: "none", color:"#05b7f1"}}to="/signup" >
-                        Sign Up 
-                </Link>
-                </Typography>
+
             </Paper>
             {/* {errors?errors.map(e => <div>{e[0]+': ' + e[1]}</div>):null} */}
         </Grid>

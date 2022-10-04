@@ -43,11 +43,6 @@ function Clients() {
 
     return (
         <div>
-            {/* <Button component={Link} to="/" variant="contained" style={buttonstyle}>
-                Home
-            </Button> */}
-            <Button  style={buttonstyle} element={<Home/>}>Home</Button>
-            {/* <ClientForm newClient={newClient}/> */}
             <Grid container spacing={2}>
                 {clients.map(client => <ClientCard key={client.id} client={client} deleteClient={deleteClient} />)}
             </Grid>

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, createContext } from "react";
 import {useNavigate} from 'react-router';
 import { Routes, Route, } from 'react-router-dom';
 import './App.css';
@@ -17,13 +17,15 @@ import CaseManagerCard from "./components/CaseManagerCard";
 // import ThemeProvider from './theme';
 // import Navigation from "./components/Navigation";
 // import TestForm from './TestForm';
-
+export const AppContext = createContext(null)
 
 function App() {
+  const [latestUpload, setLatestUpload] = useState(AppContext)
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [clients, setClients] = useState([])
   const [errors, setErrors] = useState(false)
   const [currentCaseManager, setCurrentCaseManager] = useState("");
+  
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -79,6 +81,7 @@ function App() {
   return (
     <>
     {/* <ThemeProvider> */}
+    <AppContext.Provider value={{latestUpload, setLatestUpload}}>
 
     <NavBar updateCaseManager={updateCaseManager}/>
     {/* { !currentCaseManager? <Login error={'please login'} setCurrentCaseManager={setCurrentCaseManager}/> :  */}
@@ -95,6 +98,9 @@ function App() {
       <Route path='/case_managers/:id' element={<Dashboard setCurrentCaseManager={setCurrentCaseManager}/>}/>
 
       <Route exact path='/' element={<Home clients={clients} setCurrentCaseManager={setCurrentCaseManager}/>}/>
+      {/* <Route path='/'>    
+          {isAuthenticated ? <Dashboard logout={logout} /> : <Home setIsAuthenticated={setIsAuthenticated}/>}
+      </Route> */}
       
       <Route path="dashboard" element={<Dashboard setCurrentCaseManager={setCurrentCaseManager}/>}/>
       <Route path="clientform" element={<ClientForm updateCaseManager={updateCaseManager}/>}/>
@@ -104,6 +110,7 @@ function App() {
       {/* <Route path="update" element={<ClientForm/>}/> */}
       <Route path="appointments" element={<Appointments/>}/>
     </Routes>
+    </AppContext.Provider>
     {/* </ThemeProvider> */}
     </>
   );

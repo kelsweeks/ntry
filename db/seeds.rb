@@ -10,19 +10,25 @@ cm3 = CaseManager.create(name: "Joshua Glenn", email: "joshua@gmail.com", passwo
 
 
 puts "🦸‍♀️ Seeding Clients..."
-c1 = Client.create(name: Faker::Name.name, age: rand(18..81), date_of_birth: Faker::Date.birthday(min_age: 18, max_age: 65), address: Faker::Address.full_address, phone: Faker::PhoneNumber.cell_phone, email: Faker::Internet.email,medical_history: Faker::Hipster.paragraph(sentence_count: 2))
-c2 = Client.create(name: Faker::Name.name, age: rand(18..81), date_of_birth: Faker::Date.birthday(min_age: 18, max_age: 65), address: Faker::Address.full_address, phone: Faker::PhoneNumber.cell_phone, email: Faker::Internet.email,medical_history: Faker::Hipster.paragraph(sentence_count: 2))
-c3 = Client.create(name: Faker::Name.name, age: rand(18..81), date_of_birth: Faker::Date.birthday(min_age: 18, max_age: 65), address: Faker::Address.full_address, phone: Faker::PhoneNumber.cell_phone, email: Faker::Internet.email,medical_history: Faker::Hipster.paragraph(sentence_count: 2))
-c4 = Client.create(name: Faker::Name.name, age: rand(18..81), date_of_birth: Faker::Date.birthday(min_age: 18, max_age: 65), address: Faker::Address.full_address, phone: Faker::PhoneNumber.cell_phone, email: Faker::Internet.email,medical_history: Faker::Hipster.paragraph(sentence_count: 2))
-c5 = Client.create(name: Faker::Name.name, age: rand(18..81), date_of_birth: Faker::Date.birthday(min_age: 18, max_age: 65), address: Faker::Address.full_address, phone: Faker::PhoneNumber.cell_phone, email: Faker::Internet.email,medical_history: Faker::Hipster.paragraph(sentence_count: 2))
+c1 = Client.create(name: Faker::Name.name, age: rand(18..81), date_of_birth: Faker::Date.birthday(min_age: 18, max_age: 65), address: Faker::Address.full_address, phone: Faker::PhoneNumber.cell_phone, email: Faker::Internet.email, medical_history: "Status: + , Heart Failure and Diabetes")
+c2 = Client.create(name: Faker::Name.name, age: rand(18..81), date_of_birth: Faker::Date.birthday(min_age: 18, max_age: 65), address: Faker::Address.full_address, phone: Faker::PhoneNumber.cell_phone, email: Faker::Internet.email, medical_history: "Status: - , Heart Attack 6 months ago - appointment in November.")
+c3 = Client.create(name: Faker::Name.name, age: rand(18..81), date_of_birth: Faker::Date.birthday(min_age: 18, max_age: 65), address: Faker::Address.full_address, phone: Faker::PhoneNumber.cell_phone, email: Faker::Internet.email, medical_history: "Status: + , Pulmocare added to patient resources")
+c4 = Client.create(name: Faker::Name.name, age: rand(18..81), date_of_birth: Faker::Date.birthday(min_age: 18, max_age: 65), address: Faker::Address.full_address, phone: Faker::PhoneNumber.cell_phone, email: Faker::Internet.email, medical_history: "Status: + , drug abuse in past- housed at Alethia House currently")
+c5 = Client.create(name: Faker::Name.name, age: rand(18..81), date_of_birth: Faker::Date.birthday(min_age: 18, max_age: 65), address: Faker::Address.full_address, phone: Faker::PhoneNumber.cell_phone, email: Faker::Internet.email, medical_history: "Status: - , no call no show last 3 appointments")
+c6 = Client.create(name: Faker::Name.name, age: rand(18..81), date_of_birth: Faker::Date.birthday(min_age: 18, max_age: 65), address: Faker::Address.full_address, phone: Faker::PhoneNumber.cell_phone, email: Faker::Internet.email, medical_history: "Status: - , needs transport voucher renewed for appointment")
+c7 = Client.create(name: Faker::Name.name, age: rand(18..81), date_of_birth: Faker::Date.birthday(min_age: 18, max_age: 65), address: Faker::Address.full_address, phone: Faker::PhoneNumber.cell_phone, email: Faker::Internet.email, medical_history: "Status: - , Gas voucher available if required")
+c8 = Client.create(name: Faker::Name.name, age: rand(18..81), date_of_birth: Faker::Date.birthday(min_age: 18, max_age: 65), address: Faker::Address.full_address, phone: Faker::PhoneNumber.cell_phone, email: Faker::Internet.email, medical_history: "Status: - , no call no show last 3 appointments")
+c9 = Client.create(name: Faker::Name.name, age: rand(18..81), date_of_birth: Faker::Date.birthday(min_age: 18, max_age: 65), address: Faker::Address.full_address, phone: Faker::PhoneNumber.cell_phone, email: Faker::Internet.email, medical_history: "Status: - , currently experiencing housing insecurity")
+c10 = Client.create(name: Faker::Name.name, age: rand(18..81), date_of_birth: Faker::Date.birthday(min_age: 18, max_age: 65), address: Faker::Address.full_address, phone: Faker::PhoneNumber.cell_phone, email: Faker::Internet.email, medical_history: "Status: - , need information on next of kin for records")
+
 
 puts "🦸‍♀️ Seeding Appointments..."
 Appointment.create([
-    { date: Faker::Date.forward(days: 50), description: "Medical History words", case_manager_id:cm1.id, client_id:c1.id},
-    { date: Faker::Date.forward(days: 50), description: "Medical History words", case_manager_id:cm2.id, client_id:c2.id},
-    { date: Faker::Date.forward(days: 50), description: "Medical History words", case_manager_id:cm3.id, client_id:c3.id},
-    { date: Faker::Date.forward(days: 50), description: "Medical History words", case_manager_id:cm1.id, client_id:c4.id},
-    { date: Faker::Date.forward(days: 50), description: "Medical History words", case_manager_id:cm2.id, client_id:c5.id},
+    { date: Faker::Date.forward(days: 50), description: "agenda for appointment", case_manager_id:cm1.id, client_id:c1.id},
+    { date: Faker::Date.forward(days: 50), description: "agenda for appointment", case_manager_id:cm2.id, client_id:c2.id},
+    { date: Faker::Date.forward(days: 50), description: "agenda for appointment", case_manager_id:cm3.id, client_id:c3.id},
+    { date: Faker::Date.forward(days: 50), description: "agenda for appointment", case_manager_id:cm1.id, client_id:c4.id},
+    { date: Faker::Date.forward(days: 50), description: "agenda for appointment", case_manager_id:cm2.id, client_id:c5.id},
 ])
 
 puts "🦸‍♀️ Done seeding!"
@@ -49,6 +55,6 @@ puts "🦸‍♀️ Done seeding!"
 #         address: Faker::Address.full_address,
 #         phone: Faker::PhoneNumber.cell_phone,
 #         email: Faker::Internet.email,
-#         medical_history: Faker::Hipster.paragraph(sentence_count: 2)
+#         medical_history: "Status: + , History: Heart Failure and Diabetes"
 #     )
 # end

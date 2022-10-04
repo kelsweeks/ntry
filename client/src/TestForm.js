@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useState, useEffect} from 'react';
 import { Paper, Grid, TextField } from '@material-ui/core'
 import Button from '@mui/material/Button';
+import AppContext from "./App"
 // import axios from 'axios'
 
 function TestForm() {
@@ -10,46 +11,41 @@ function TestForm() {
     const [upload, setUpload] = useState(null)
     const [files, setFiles] = useState([])
     const [caseManagers, setCaseManagers] = useState([])
+    // const [latestUpload, setLatestUpload] = useContext(AppContext)
     
-    const paperstyle={padding : '20px', height:'30vh', width:500, margin:"5px auto"}
+    const paperstyle={padding : '20px', height:'40vh', width:300, margin:"5px auto"}
     const buttonstyle={backgroundColor: '#05b7f1'}
     
-
-    // is this redundant since i already passed setCaseManager={setCaseManager} in the parent Dashboard component?
     useEffect(() => {
         fetch(`/case_managers`)
         .then(res => res.json())
         .then(data => setCaseManagers(data))
     }, [])
 
-
-    // const handleFileUpload =(e)=> {
-    //     this.setState({
-    //         upload: e.target.files[0]
-    //     })
-    // }
-
     function handleFileSubmit(e){
-        // console.log('I Clicked Upload')
         e.preventDefault()
-        console.log('is this the file upload?')
-        const formData = new FormData()
-        formData.append('name', name)
-        formData.append('note', note)
-        formData.append('upload', upload)
+        const data = new FormData()
+        data.append('name', name)
+        data.append('note', note)
+        data.append('upload', upload)
+        // data.append("caseManager[upload]", e.target.upload.file[0])
 
         fetch('/files', {
             method: 'POST',
-            body: formData
+            body: data
         })
-        console.log('I Clicked Upload + and UPLOADED A FILE')
+        // .then(res => res.json())
+        // .then(data => {
+        //     setLatestUpload(data.image_url)
+        // })
+        console.log('I Clicked Upload + and UPLOADED AN IMAGE')
     }
 
     return (
         <>
         <Grid>
             <Paper elevation={10} style={paperstyle} >
-                <h1 align='center'> Upload a File </h1>
+                <h1 align='center'> Add a Picture </h1>
             <Grid container direction={"column"} spacing={2}>
                 <Grid item align='center'>
                     <TextField variant='outlined' label="name" type="text" value={name} onChange={(e) => setName(e.target.value)}/>
@@ -58,23 +54,15 @@ function TestForm() {
                     <TextField variant='outlined' label="note" type="text" value={note} onChange={(e) => setNote(e.target.value)}/>
                 </Grid>
                 <Grid item align='center'>
-                    <input variant='outlined' type="file"  accepts=".xlsx,.xls,image/*,.doc, .docx,.ppt, .pptx,.txt,.pdf" onChange={(e) => setUpload(e.target.files[0])} />
+                    <input variant='outlined' type="file" name="upload" accepts="image/*" multiple={false} onChange={(e) => setUpload(e.target.files[0])} />
                 </Grid>
                 <Grid item align='center'>
+                    {/* <img id="photo-preview" src={image_path}></img> */}
                     <Button variant='contained' style={buttonstyle} type='submit' onClick={handleFileSubmit}>Upload</Button>
                 </Grid>
             </Grid>
             </Paper>
         </Grid>
-            {/* <form onSubmit={handleUploadSubmit}>
-                <h2>name</h2>
-                <input type="text" value={name} onChange={(e) => setName(e.target.value)}/>
-                <h2>note</h2>
-                <input type="text" value={note} onChange={(e) => setNote(e.target.value)}/>
-                <h2>upload file</h2>
-                <input type="file" accepts=".xlsx,.xls,image/*,.doc, .docx,.ppt, .pptx,.txt,.pdf" onChange={(e) => setUpload(e.target.files[0])}/>
-                <input type='submit'/>
-            </form> */}
         </>
     )
 }
