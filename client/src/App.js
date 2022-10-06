@@ -89,7 +89,7 @@ function App() {
       {/* <Route>(false ? <Home/> : <LoggedOut/></Route> */}
       
       <Route path="login" element={<Login setCurrentCaseManager={setCurrentCaseManager}/>}/>
-      <Route path="signup" element={<SignUp />}/>
+      <Route path="signup" element={<SignUp setCurrentCaseManager={setCurrentCaseManager}/>}/>
 
       <Route path='/clients/new' element={<CreateClientForm addClient={addClient}/>}/>
       <Route path='/clients/:id/edit' element={<ClientForm updateClient={updateClient}/>}/>
@@ -102,7 +102,7 @@ function App() {
           {isAuthenticated ? <Dashboard logout={logout} /> : <Home setIsAuthenticated={setIsAuthenticated}/>}
       </Route> */}
       
-      <Route path="dashboard" element={<Dashboard setCurrentCaseManager={setCurrentCaseManager}/>}/>
+      <Route path="dashboard" element={<Dashboard setCurrentCaseManager={setCurrentCaseManager} currentCaseManager={currentCaseManager}/>}/>
       <Route path="clientform" element={<ClientForm updateCaseManager={updateCaseManager}/>}/>
       <Route path="logout" element={<LoggedOut/>}/>
       <Route path="clients" element={<Clients updateCaseManager={updateCaseManager}/>}/>

@@ -43,9 +43,12 @@ function Clients() {
 
     return (
         <div>
-            <Grid container spacing={2}>
-                {clients.map(client => <ClientCard key={client.id} client={client} deleteClient={deleteClient} />)}
+            <Grid container direction="row" spacing={4} justifyContent="space-evenly" align="center">
+                <Grid item xs={3} sm={6} md={4}>
+                    {clients.map(client => <ClientCard key={client.id} client={client} deleteClient={deleteClient} />)}
+                </Grid>
             </Grid>
+
         </div>
     )
 }

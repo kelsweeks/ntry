@@ -9,7 +9,7 @@ import {useState} from "react"
 import {Link} from 'react-router-dom';
 
 function Login({currentCaseManager, setCurrentCaseManager }) {
-    const paperstyle={padding :20, height:'40vh', width:300, margin:"100px auto"}
+    const paperstyle={padding :20, height:'50vh', width:350, margin:"100px auto"}
     const avatarStyle={backgroundColor: '#05b7f1'}
     const buttonstyle={backgroundColor: '#05b7f1'}
 
@@ -67,13 +67,13 @@ function Login({currentCaseManager, setCurrentCaseManager }) {
                         <h2>Login</h2>
                     </Grid>
                     <form >
-                        <Grid item align='center'>
+                        <Grid item align='center' style={{padding: 10}}>
                             <TextField variant='outlined' label="name" placeholder="Enter your name" fullWidth required name='name' value={formData.name} onChange={handleChange}/>
                         </Grid>
-                        <Grid item align='center'>
+                        <Grid item align='center' style={{padding: 10}}>
                             <TextField variant='outlined' label="password" placeholder="Enter your password" type='password' fullWidth required name='password' value={formData.password} onChange={handleChange}/>
                         </Grid>
-                        <Grid item align='center'>
+                        <Grid item align='center' style={{padding: 10}}>
                             <Button variant="contained" style={buttonstyle} type='submit' fullWidth>Login</Button>
                         </Grid>
                     </form>

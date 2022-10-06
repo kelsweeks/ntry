@@ -12,12 +12,14 @@ import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-// import WavesIcon from '@mui/icons-material/Waves';
+import WavesIcon from '@mui/icons-material/Waves';
 import Home from './Home'
 // import { useState } from 'react';
 import { useNavigate} from 'react-router-dom';
 // import Logo from '../assets/Logo.png'
 import Logo from '../assets/Logo.svg'
+import Current from '../assets/Current.svg'
+import BoltIcon from '../assets/BoltIcon.svg'
 // import PersonIcon from '@mui/icons-material/Person'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
@@ -27,7 +29,7 @@ const settings = ['Dashboard', 'Logout'];
 function ResponsiveAppBar({ currentCaseManager, setCurrentCaseManager, updateCaseManager, logout}) {
     const logostyle ={width: 100, height: 100} 
     // const paperstyle={padding :20, height:'40vh', width:300, margin:"20px auto"}
-    // const buttonstyle={backgroundColor: "#05b7f1"}
+    const buttonstyle={size: 'small', backgroundColor: "#FF3C00",textDecoration: 'none', color: 'white'}
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -41,6 +43,9 @@ function ResponsiveAppBar({ currentCaseManager, setCurrentCaseManager, updateCas
             if(res.ok) {
                 updateCaseManager("")
                 navigate('/')
+            }else {
+                console.log("all bad", res.status)
+            
             }
         })
     }
@@ -66,6 +71,7 @@ function ResponsiveAppBar({ currentCaseManager, setCurrentCaseManager, updateCas
         <Container maxWidth="xl">
             <Toolbar disableGutters>
             {/* <WavesIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} /> */}
+            <img src={BoltIcon} style={{height: 30, width: 30}}></img>
             <Typography
                 variant="h6"
                 noWrap
@@ -81,7 +87,10 @@ function ResponsiveAppBar({ currentCaseManager, setCurrentCaseManager, updateCas
                 textDecoration: 'none',
                 }}
             >
-            <img src={Logo} alt='Current Logo' style={logostyle}></img>
+            <Link to="/">
+                <img src={Current} alt='Current Logo'style={logostyle}></img>
+            </Link>
+            
             </Typography>
 
             <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -117,7 +126,6 @@ function ResponsiveAppBar({ currentCaseManager, setCurrentCaseManager, updateCas
                 {pages.map((page) => (
                     <MenuItem key={page} onClick={handleCloseNavMenu}>
                     <Typography textAlign="center">
-                        {/* { !currentCaseManager ? <Link style={{textDecoration: "none", color:"black"}} to={`/${page}`}>{page}</Link> : null } */}
                         <Link style={{textDecoration: "none", color:"#FF3C00"}} to={`/${page}`}>{page}</Link>
                     </Typography>
                     </MenuItem>
@@ -126,7 +134,6 @@ function ResponsiveAppBar({ currentCaseManager, setCurrentCaseManager, updateCas
             </Box>
 
 
-            {/* <WavesIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} /> */}
             <Typography
                 variant="h5"
                 noWrap
@@ -158,12 +165,12 @@ function ResponsiveAppBar({ currentCaseManager, setCurrentCaseManager, updateCas
             </Box>
 
             <Box sx={{ flexGrow: 0 }}>
-                { !setCurrentCaseManager ? <Button logout={logout} onClick={handleLogOut} style={{textDecoration: 'none', color: 'white'}}>Log Out</Button> : null}
-                <Tooltip title="Open settings">
+                { !setCurrentCaseManager ? <Button logout={logout} onClick={handleLogOut} style={buttonstyle}>Log Out</Button> : null}
+                {/* <Tooltip title="Open settings">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                     <AccountCircleIcon style={{color: "#FFDD00"}} ></AccountCircleIcon>
                 </IconButton>
-                </Tooltip>
+                </Tooltip> */}
                 <Menu
                 sx={{ mt: '45px' }}
                 id="menu-appbar"

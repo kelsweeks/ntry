@@ -10,7 +10,7 @@ import AddCircleOutlinedIcon from '@mui/icons-material/AddCircleOutlined';
 
 function CreateClientForm({ addClient }){
     const buttonstyle={padding :5, backgroundColor: '#05b7f1', width: 100, align: 'center', margin: "20px auto"}
-    const paperstyle={padding : '20px', height:'60vh', width:500, margin:'5px auto'}
+    const paperstyle={padding : '20px', height:'80vh', width:500, margin:'5px auto'}
     const homebuttonstyle={padding :5, backgroundColor: '#05b7f1', margin: "10px"}
     const [showButton, setShowButton] = useState(false)
     const [name, setName] = useState('')
@@ -70,23 +70,44 @@ function CreateClientForm({ addClient }){
             <Grid>
             {errors?errors.map(e => <div>{e}</div>):null}
                 <Paper elevation={10} style={paperstyle}>
-                <form onSubmit={submitData}>
+                    <Grid container align= 'center' direction={"column"} spacing={1}>
+                    <form onSubmit={submitData}>
+                        <h2 align='center'>Add New Client</h2>
+                        <Grid item align='center' style={{padding: 10}}>
+                            <TextField required name="name" variant='outlined' label="Name" sx={{margin: 3}} value={formData.name} onChange={handleChange} fullWidth />
+                        </Grid>
 
-                    <h2 align='center'>Add New Client</h2>
-                        <TextField required name="name" variant='outlined' label="Name" sx={{margin: 3}} value={formData.name} onChange={handleChange} fullWidth />
-                    {/* <Grid item>
-                        <TextField variant='outlined' label="Name" value={formData.name} fullWidth>
-                            <input value={formData.name} onChange={(e) => setName(e.target.value)}></input>
-                        </TextField>
-                    </Grid> */}
-                        <TextField required name="age" variant='outlined' label="Age" sx={{margin: 3}} value={formData.age} onChange={handleChange} fullWidth />
-                        <TextField required name="date_of_birth" variant='outlined' label="Date of Birth" sx={{margin: 3}} value={formData.date_of_birth} onChange={handleChange} fullWidth />
-                        <TextField name="address" variant='outlined' label="Address" sx={{margin: 3}} value={formData.address} onChange={handleChange} fullWidth />
-                        <TextField name="phone" type="tel" variant='outlined' label="Phone" sx={{margin: 3}} value={formData.phone} onChange={handleChange} fullWidth />
-                        <TextField name="email" variant='outlined' label="Email" sx={{margin: 3}} value={formData.email} onChange={handleChange} fullWidth />
-                        <TextField name="medical_history" variant='outlined' label="Medical history" sx={{margin: 3}} value={formData.medical_history} onChange={handleChange} fullWidth />
-                        <Button variant="contained" style={buttonstyle} type='submit'sx={{margin: 3}} startIcon={<AddCircleOutlinedIcon />} fullWidth>Client</Button>
-                </form>
+                        <Grid item align='center' style={{padding: 10}}>
+                            <TextField required name="age" variant='outlined' label="Age" sx={{margin: 3}} value={formData.age} onChange={handleChange} fullWidth />
+                        </Grid>
+
+                        <Grid item align='center' style={{padding: 10}}>
+                            <TextField required name="date_of_birth" variant='outlined' label="Date of Birth" sx={{margin: 3}} value={formData.date_of_birth} onChange={handleChange} fullWidth />
+                        </Grid>
+
+                        <Grid item align='center' style={{padding: 10}}>
+                            <TextField name="address" variant='outlined' label="Address" sx={{margin: 3}} value={formData.address} onChange={handleChange} fullWidth />
+                        </Grid>
+
+                        <Grid item align='center' style={{padding: 10}}>
+                            <TextField name="phone" type="tel" variant='outlined' label="Phone" sx={{margin: 3}} value={formData.phone} onChange={handleChange} fullWidth />
+                        </Grid>
+
+                        <Grid item align='center' style={{padding: 10}}>
+                            <TextField name="email" variant='outlined' label="Email" sx={{margin: 3}} value={formData.email} onChange={handleChange} fullWidth />
+                        </Grid>
+
+                        <Grid item align='center' style={{padding: 10}}>
+                            <TextField name="medical_history" variant='outlined' label="Medical history" sx={{margin: 3}} value={formData.medical_history} onChange={handleChange} fullWidth />
+                        </Grid>
+
+                        <Grid item align='center' style={{padding: 10}}>
+                            <Button variant="contained" style={buttonstyle} type='submit'sx={{margin: 3}} startIcon={<AddCircleOutlinedIcon />} fullWidth>Client</Button>
+                        </Grid>
+                    </form>
+                    </Grid>
+
+
                 </Paper>
                 {errors?errors.map(e => <h2 style={{color:'red'}}>{e.toUpperCase()}</h2>):null}
                 {/* <Paper>

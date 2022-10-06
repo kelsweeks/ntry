@@ -9,11 +9,11 @@ import TableActions from './TableActions'
 
 
 
-function DataTable({deleteClient, updateClient}) {
+function DataTable() {
 
     const paperstyle={padding : 20, height:'30vh', width: '75%', margin:"10px auto"}
     const [clients, setClients] = useState([])
-    const params = useParams()
+    // const params = useParams()
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -24,6 +24,8 @@ function DataTable({deleteClient, updateClient}) {
 
     const [deleteErrors, setDeleteErrors] = useState(false)
     const [updateErrors, setUpdateErrors] = useState('')
+    
+    const deleteClient = (id) => setClients(clients.filter(c => c.id !== id))
 
     function handleClickDelete({deleteClient, cellValues, rowId, }) {
         console.log(clients)
@@ -31,7 +33,16 @@ function DataTable({deleteClient, updateClient}) {
     }
         
     const [updatedErrors, setUpdatedErrors] = useState('')
-    
+    const updateClient = (updatedClient) => setClients(clientobj => {
+        return clientobj.map(client => {
+            if(client.id === updatedClient.id){
+                return updatedClient
+            }else {
+                return client
+            }
+        })
+    })
+
     function handleClickUpdate(event, cellValues, updatedClient,) {
         console.log(clients);
         console.log("I Clicked Update")
@@ -54,38 +65,38 @@ function DataTable({deleteClient, updateClient}) {
         {field: 'email', headerName: 'EMAIL',width: 150, editable: true, sortable: false},
         {field: 'address', headerName: 'ADDRESS',width: 150, editable: true, sortable: false},
         {field: 'medical_history', headerName: 'MEDICAL HISTORY', width: 600, editable: true, sortable: false},
-        {
-            field: 'Update', width: 150,
-            renderCell: (cellValues) => {
-                return (
-                    <Button
-                    variant="contained"
-                    style={buttonstyle}
-                    onClick={(event) => {
-                        handleClickUpdate(event, cellValues);
-                    }}
-                >
-                UPDATE
-                </Button>
-            );
-            }
-        },
-        {
-            field: 'Delete',valign: 'center', width: 200,
-            renderCell: (cellValues) => {
-                return (
-                    <Button
-                    variant="contained"
-                    style={buttonstyle}
-                    onClick={(event) => {
-                        handleClickDelete(event, cellValues);
-                    }}
-                >
-                DELETE
-                </Button>
-            );
-            }
-        },
+        // {
+        //     field: 'Update', width: 150,
+        //     renderCell: (cellValues) => {
+        //         return (
+        //             <Button
+        //             variant="contained"
+        //             style={buttonstyle}
+        //             onClick={(event) => {
+        //                 handleClickUpdate(event, cellValues);
+        //             }}
+        //         >
+        //         UPDATE
+        //         </Button>
+        //     );
+        //     }
+        // },
+        // {
+        //     field: 'Delete',valign: 'center', width: 200,
+        //     renderCell: (cellValues) => {
+        //         return (
+        //             <Button
+        //             variant="contained"
+        //             style={buttonstyle}
+        //             onClick={(event) => {
+        //                 handleClickDelete(event, cellValues);
+        //             }}
+        //         >
+        //         DELETE
+        //         </Button>
+        //     );
+        //     }
+        // },
     ]
 
     return (
@@ -113,16 +124,3 @@ function DataTable({deleteClient, updateClient}) {
 }
 
 export default DataTable
-
-// TODO: Columns in Data Table should include:
-    // ID 
-    // Name
-    // Age
-    // Date of Birth
-    // Address
-    // Phone
-    // Email
-    // Medical History
-
-    // Update Client
-    // Delete Client
